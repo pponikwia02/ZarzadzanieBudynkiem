@@ -8,5 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Wcisniej mnie" Height="200" Width="200"></Button>
+        <Button Content="MR" HorizontalAlignment="Left" Height="64" Margin="81,142,0,0" VerticalAlignment="Top" Width="136"/>
+
+
     </Grid>
 </Window>
