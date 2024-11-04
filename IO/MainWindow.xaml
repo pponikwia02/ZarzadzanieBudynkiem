@@ -9,6 +9,7 @@
     <Grid>
         <Button Content="Wcisniej mnie" Height="200" Width="200"></Button>
         <Button Content="MR" HorizontalAlignment="Left" Height="64" Margin="81,142,0,0" VerticalAlignment="Top" Width="136"/>
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="571,98,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>
