@@ -22,7 +22,8 @@
 - mała wiedza w zakresie obsługi bazy danych z poziomu języka C# (entity framework),<br>
 
 
-
+<h3>TODO List</h3>
+![alt text](https://github.com/pponikwia02/ZarzadzanieBudynkiem/blob/master/Img/TODO.png)
 
   
   
