@@ -20,6 +20,9 @@
   <h3>Potencjalne ryzyka</h3>
 - brak doświadczenia w tworzeniu aplikacji typu WPF/C#,<br>
 - mała wiedza w zakresie obsługi bazy danych z poziomu języka C# (entity framework),<br>
-- 
+
+
+
+
   
   
