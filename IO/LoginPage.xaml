@@ -1,0 +1,75 @@
+﻿<Page x:Class="IO.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IO"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LoginPage">
+
+    <Grid>
+        
+        <Grid Background="White" Margin="100">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="NZaloguj"
+                    Text="Zaloguj sie" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="35"
+                    Foreground="Purple"
+                    Height="50"
+                    Width="181"/>
+            <TextBlock Grid.Row="1"
+                    Text="Podaj login"
+                    Margin="100,0,0,0"
+                    FontSize="14"/>
+            <TextBox x:Name="Login_Box"
+                  Grid.Row="1"
+                  Width="400"
+                  Height="20"
+                 Margin="30,30,30,0"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2"
+        Text="Podaj hasło"
+        Margin="100,0,0,0"
+        FontSize="14"/>
+            <PasswordBox x:Name="Password_Box"
+                      Grid.Row="2"
+                      Width="400"
+                      Height="20"
+                      Margin="30,30,30,0"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"/>
+            <Button x:Name="Rejestracja_Btn"
+                 Margin="0,10,0,0"
+                    Grid.Row="3"
+                 BorderThickness="0"
+                    Content="Zarejestruj"
+                    Foreground="Blue"
+                 Background="Transparent"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="13"
+                    FontStyle="Italic"
+                 Click="Rejestracja_Btn_MouseDown"/>
+            <Button x:Name="Log_In_Btn"
+                 Grid.Row="4"
+                 Margin="20"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Content="Zaloguj sie"
+                 Background="AliceBlue"
+                 Width="400"
+                    Click="Log_In_Btn_Click"
+                 Height="20"/>
+        </Grid>
+    </Grid>
+</Page>
