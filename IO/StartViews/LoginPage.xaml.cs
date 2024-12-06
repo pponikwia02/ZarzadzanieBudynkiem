@@ -32,10 +32,23 @@ namespace IO
 
         private void Log_In_Btn_Click(object sender, RoutedEventArgs e)
         {
+            bool flag = false;
             string username = Login_Box.Text;
             string password = Password_Box.Password;
+            if (password == string.Empty || username == string.Empty)
+            {
+                MessageBox.Show("Uzupełnij wszystkie pola!");
+            }
+
+            //TODO:
             // Sprawdź czy taki użytkownik istnieje/wprowadzone dane sa poprawne
-            this.NavigationService.Navigate(new HomePage());
+
+
+            if(flag)
+            {
+                this.NavigationService.Navigate(new HomePage());
+            }
+            
         }
     }
 }
