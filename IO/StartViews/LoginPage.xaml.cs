@@ -32,6 +32,8 @@ namespace IO
 
         private void Log_In_Btn_Click(object sender, RoutedEventArgs e)
         {
+            string username = Login_Box.Text;
+            string password = Password_Box.Password;
             // Sprawdź czy taki użytkownik istnieje/wprowadzone dane sa poprawne
             this.NavigationService.Navigate(new HomePage());
         }

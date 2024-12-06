@@ -27,6 +27,7 @@ namespace IO
 
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
         {
+            string email = Login_Box.Text;
             string password = Password_Box.Password;
             string password_repeat = Password_Box_Repeat.Password;
             if(password==password_repeat)
@@ -37,6 +38,7 @@ namespace IO
             else
             {
                 MessageBox.Show("Podane hasła nie są identyczne");
+                return;
             }
         }
     }
