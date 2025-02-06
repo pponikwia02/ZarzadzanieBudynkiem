@@ -5,16 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IO.MainApp"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="350" d:DesignWidth="800"
+        Height="500"
       Title="ClassroomReservationWindow">
 
-    <Grid Height="430" VerticalAlignment="Bottom">
+    <Grid Height="450" VerticalAlignment="Top">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <!--  Search bar -->
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="350"/>
             <!-- Lista Sal -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
             <!-- Przyciski -->
         </Grid.RowDefinitions>
 
