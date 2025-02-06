@@ -1,0 +1,56 @@
+﻿<Window x:Class="IO.MainApp.ClassroomReservationWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IO.MainApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClassroomReservationWindow">
+
+    <Grid Height="430" VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <!--  Search bar -->
+            <RowDefinition Height="*"/>
+            <!-- Lista Sal -->
+            <RowDefinition Height="Auto"/>
+            <!-- Przyciski -->
+        </Grid.RowDefinitions>
+
+        <!-- Search -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+            <TextBlock Text="Search:" VerticalAlignment="Center"/>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5,0,0,0" 
+                     TextChanged="SearchTextBox_TextChanged"/>
+        </StackPanel>
+        <TextBlock x:Name="BuildingNameTextBlock" 
+                   Text="Building Name" 
+                   FontSize="16" FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="10"/>
+        <!-- Lista -->
+        <ListView x:Name="ClassroomsListView" Grid.Row="1" Margin="5" 
+                  SelectionChanged="ClassroomsListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nazwa sali" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                    <GridViewColumn Header="Siedzenia" DisplayMemberBinding="{Binding Seats}" Width="70"/>
+                    <GridViewColumn Header="Rezerwacja" DisplayMemberBinding="{Binding IsReserved}" Width="70"/>
+                    <GridViewColumn Header="Rezerwujący" DisplayMemberBinding="{Binding ReservedBy}" Width="100"/>
+                    <GridViewColumn Header="Od" DisplayMemberBinding="{Binding ReservationStart}" Width="100"/>
+                    <GridViewColumn Header="Do" DisplayMemberBinding="{Binding ReservationEnd}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Przyciski -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="5">
+            <Button Content="Reserve" x:Name="ReserveButton" 
+                    Click="ReserveButton_Click" Margin="5"/>
+            <Button Content="Change Reservation" x:Name="ChangeButton" 
+                    Click="ChangeButton_Click" IsEnabled="False" Margin="5"/>
+            <Button Content="Close" Click="CloseButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

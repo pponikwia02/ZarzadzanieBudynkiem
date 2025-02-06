@@ -1,0 +1,53 @@
+﻿<Window x:Class="IO.MainApp.CreateReservationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IO.MainApp"
+        mc:Ignorable="d"
+        Title="CreateReservationWindow" Height="250" Width="400">
+    
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ID -->
+            <TextBlock Text=" ID Sali :" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="ClassroomIdTextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+            <!-- Nazwa -->
+            <TextBlock Text="Nazwa Sali :" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="ClassroomNameTextBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+            <!-- Zarezerwowane przez -->
+            <TextBlock Text="Rezerwujący :" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="ReservedByTextBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+            <!-- Czas rozpoczęcia -->
+            <TextBlock Text="Start (data):" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="ReservationStartTextBox" Grid.Row="3" Grid.Column="1" Margin="5"
+                 ToolTip="Enter date and time (e.g., 2/15/2025 14:00)"/>
+
+            <!-- czas zakończenia -->
+            <TextBlock Text="koniec (data):" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="ReservationEndTextBox" Grid.Row="4" Grid.Column="1" Margin="5"
+                 ToolTip="Enter date and time (e.g., 2/15/2025 16:00)"/>
+
+            <!-- Przyciski -->
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Create" Width="75" Margin="5" Click="CreateButton_Click"/>
+                <Button Content="Cancel" Width="75" Margin="5" Click="CancelButton_Click"/>
+            </StackPanel>
+       
+    </Grid>
+</Window>

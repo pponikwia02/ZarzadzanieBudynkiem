@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using IO.MainApp;
 
 namespace IO
 {
@@ -23,6 +25,17 @@ namespace IO
         public HomePage()
         {
             InitializeComponent();
+        }
+        private void Building_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Otwarcie okna rezerwacji
+            if (sender is Rectangle clickedRectangle)
+            {
+                string selectedBuilding = clickedRectangle.Name.ToString(); // Pobranie nazwy budynku
+                ClassroomReservationWindow reservationWindow = new ClassroomReservationWindow(selectedBuilding);
+                reservationWindow.Show();
+            }
+
         }
     }
 }
