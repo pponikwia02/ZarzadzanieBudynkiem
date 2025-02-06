@@ -43,7 +43,7 @@ namespace IO
             //TODO:
             // Sprawdź czy taki użytkownik istnieje/wprowadzone dane sa poprawne
 
-
+            if (password == "admin" && username == "admin") flag = true;
             if(flag)
             {
                 this.NavigationService.Navigate(new HomePage());

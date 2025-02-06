@@ -9,7 +9,7 @@
       Title="LoginPage">
 
     <Grid>
-        
+        <Image Source="\res\img\login.jpg"></Image>
         <Grid Background="White" Margin="100">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
