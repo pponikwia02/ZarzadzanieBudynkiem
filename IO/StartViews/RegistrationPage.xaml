@@ -70,7 +70,7 @@ FontSize="14"/>
                  Background="AliceBlue"
                  Width="400"
                     Click="Reg_Btn_Click"
-                 Height="20"/>
+                 Height="20"/>s
         </Grid>
     </Grid>
 </Page>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IO.DataBase;
 
 namespace IO
 {
@@ -23,6 +24,11 @@ namespace IO
         public RegistrationPage()
         {
             InitializeComponent();
+
+            DataContext context = new DataContext();
+            //myDataGrid.ItemsSource=context.Admin.ToList();
+          
+            
         }
 
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
