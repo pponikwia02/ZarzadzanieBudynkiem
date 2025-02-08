@@ -14,35 +14,45 @@
         <Canvas>
             <!-- Budynek LAB B -->
             <Rectangle x:Name="LabB" Width="200" Height="40" Fill="LightBlue"
-                   Canvas.Left="190" Canvas.Bottom="50"
-                       
-                   MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" Canvas.Top="394" VerticalAlignment="Center" Tag="Lab B"/>
+                Canvas.Left="190" Canvas.Bottom="50"
+                MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" Canvas.Top="394" VerticalAlignment="Center" Tag="Lab B"
+                MouseEnter="Rectangle1_MouseEnter"
+                MouseLeave="Rectangle1_MouseLeave"/>
             <TextBlock Text="LAB B" Canvas.Left="270" Canvas.Top="400" FontSize="18"/>
             <!-- Budynek LAB A -->
             <Rectangle x:Name="LabA" Width="200" Height="40" Fill="LightGreen"
-                   Canvas.Right="200" Canvas.Bottom="50"
-                   MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" Canvas.Left="540" Canvas.Top="394" VerticalAlignment="Center"/>
+                Canvas.Right="200" Canvas.Bottom="50"
+                MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" Canvas.Left="540" Canvas.Top="394" VerticalAlignment="Center"
+                MouseEnter="Rectangle2_MouseEnter"    
+                MouseLeave="Rectangle2_MouseLeave"/>
             <TextBlock Text="LAB A" Canvas.Left="620" Canvas.Top="400" FontSize="18" Tag="Lab A"/>
             <!-- Budynek L -->
             <Rectangle x:Name="BudynekL" Width="550" Height="70" Fill="LightCoral"
-                   Canvas.Left="190" Canvas.Top="298"
-                   MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                Canvas.Left="190" Canvas.Top="298"
+                MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" VerticalAlignment="Top"
+                MouseEnter="Rectangle3_MouseEnter"
+                MouseLeave="Rectangle3_MouseLeave"/>
             <TextBlock Text="Budynek L" Canvas.Left="430" Canvas.Top="320" FontSize="18" Tag="Budynek L"/>
             <!-- Budynek A -->
             <Rectangle x:Name="BudynekA" Width="250" Height="70" Fill="LightYellow"
-                   Canvas.Left="490" Canvas.Top="172"
-                   MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.691,0.9"/>
+                Canvas.Left="490" Canvas.Top="172"
+                MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.691,0.9"
+                MouseEnter="Rectangle4_MouseEnter"
+                MouseLeave="Rectangle4_MouseLeave"/>
             <TextBlock Text="Budynek A" Canvas.Left="570" Canvas.Top="190" FontSize="18" Tag="Budynek A"/>
             <!--Budynek B-->
             <Rectangle x:Name="BudynekB" Width="250" Height="70" Fill="Green"
-          Canvas.Left="490" Canvas.Top="49"
-          MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="1.691,0.9"/>
+                Canvas.Left="490" Canvas.Top="49"
+                MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="1.691,0.9"
+                MouseEnter="Rectangle5_MouseEnter"
+                MouseLeave="Rectangle5_MouseLeave"/>
             <TextBlock Text="Budynek B" Canvas.Left="570" Canvas.Top="70" FontSize="18" Tag="Budynek B"/>
             <!--Budynek G-->
-
             <Rectangle x:Name="Gimnastyczna" Width="250" Height="70" Fill="Blue"
- Canvas.Left="40" Canvas.Top="49"
- MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="1.691,0.9"/>
+                Canvas.Left="40" Canvas.Top="49"
+                MouseLeftButtonDown="Building_MouseLeftButtonDown" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="1.691,0.9"
+                MouseEnter="Rectangle6_MouseEnter"
+                MouseLeave="Rectangle6_MouseLeave"/>
             <TextBlock Text="Budynek G" Canvas.Left="120" Canvas.Top="70" FontSize="18" Tag="Budyenk G"/>
         </Canvas>
 

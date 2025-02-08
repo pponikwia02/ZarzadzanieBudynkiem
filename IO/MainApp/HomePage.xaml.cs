@@ -26,6 +26,7 @@ namespace IO
         {
             InitializeComponent();
         }
+      
         private void Building_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // Otwarcie okna rezerwacji
@@ -36,6 +37,79 @@ namespace IO
                 reservationWindow.Show();
             }
 
+        }
+        private void Rectangle1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            
+            LabB.Fill = new SolidColorBrush(Colors.Magenta);
+        }
+
+        private void Rectangle1_MouseLeave(object sender, MouseEventArgs e)
+        {
+           
+            LabB.Fill = new SolidColorBrush(Colors.DarkMagenta);
+        }
+        private void Rectangle2_MouseEnter(object sender, MouseEventArgs e)
+        {
+            LabA.Fill = new SolidColorBrush(Colors.LightBlue);
+           
+        }
+
+        private void Rectangle2_MouseLeave(object sender, MouseEventArgs e)
+        {
+        
+            LabA.Fill = new SolidColorBrush(Colors.DarkCyan);
+        
+        }
+        private void Rectangle3_MouseEnter(object sender, MouseEventArgs e)
+        {
+        
+            BudynekL.Fill = new SolidColorBrush(Colors.LightPink);
+       
+        }
+
+        private void Rectangle3_MouseLeave(object sender, MouseEventArgs e)
+        {
+          
+            BudynekL.Fill=new SolidColorBrush(Colors.Magenta);
+
+        }
+        private void Rectangle4_MouseEnter(object sender, MouseEventArgs e)
+        {
+           
+            BudynekA.Fill = new SolidColorBrush(Colors.LightYellow);
+         
+        }
+
+        private void Rectangle4_MouseLeave(object sender, MouseEventArgs e)
+        {
+           
+            BudynekA.Fill = new SolidColorBrush(Colors.Yellow);
+           
+        }
+        private void Rectangle5_MouseEnter(object sender, MouseEventArgs e)
+        {
+            
+            BudynekB.Fill = new SolidColorBrush(Colors.LightGreen);
+         
+        }
+
+        private void Rectangle5_MouseLeave(object sender, MouseEventArgs e)
+        {
+        
+            BudynekB.Fill = new SolidColorBrush(Colors.Green);
+         
+        }
+        private void Rectangle6_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Gimnastyczna.Fill = new SolidColorBrush(Colors.LightBlue);
+          
+        }
+
+        private void Rectangle6_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Gimnastyczna.Fill = new SolidColorBrush(Colors.Blue);
+     
         }
     }
 }
