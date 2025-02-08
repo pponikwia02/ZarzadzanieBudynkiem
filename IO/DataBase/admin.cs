@@ -8,8 +8,9 @@ namespace IO.DataBase
 {
     public class Admin
     {
+        
         public int id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public required string login { get; set; }
+        public required string password { get; set; }
     }
 }
