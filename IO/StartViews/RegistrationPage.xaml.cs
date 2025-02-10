@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IO.DataBase;
+using System;
+using System.Linq;
+using System.Security.Cryptography;
+
 
 namespace IO
 {
@@ -23,33 +28,61 @@ namespace IO
         public RegistrationPage()
         {
             InitializeComponent();
+
+        }
+        public class UserService
+        {
+            public bool RegisterUser(string login, string password, string passwordRepeat)
+            {
+                DataContext context = new DataContext();
+                if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+                {
+                    MessageBox.Show("Uzupełnij wszystkie pola!");
+                    return false;
+                }
+
+                if (password != passwordRepeat)
+                {
+                    MessageBox.Show("Podane hasła nie są identyczne");
+                    return false;
+                }
+
+
+                {
+                    // Sprawdzenie, czy email już istnieje w bazie
+                    if (context.Admin.Any(u => u.login == login))
+                    {
+                        MessageBox.Show("Użytkownik z takim loginem już istnieje!");
+                        return false;
+                    }
+
+                    // Tworzenie użytkownika
+                    var newUser = new Admin
+                    {
+                        login = login,
+                        password = password // Hashujemy hasło przed zapisem!
+                    };
+
+                    context.Admin.Add(newUser);
+                    context.SaveChanges(); // Zapis do bazy
+
+                    MessageBox.Show("Rejestracja zakończona sukcesem!");
+                    return true;
+                }
+            }
         }
 
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
         {
-            bool flag = false;
-            string email = Login_Box.Text;
+            
+            string login = Login_Box.Text;
             string password = Password_Box.Password;
             string password_repeat = Password_Box_Repeat.Password;
-            if(password==password_repeat && password != string.Empty)
-            {
-                flag = true;
-            }
-             if(password != password_repeat)
-            {
-                MessageBox.Show("Podane hasła nie są identyczne");
-                flag = false;
-                return;
-            }
-             if(password ==  string.Empty || email== string.Empty)
-            {
-                MessageBox.Show("Uzupełnij wszystkie pola!");
-                flag = false;
-            }
-            if(flag)
-            {
-                this.NavigationService.Navigate(new LoginPage());
 
+            UserService userService = new UserService();
+            if (userService.RegisterUser(login, password, password_repeat))
+            {
+                this.NavigationService.Navigate(new LoginPage()); // Przejście do logowania
             }
         }
     }

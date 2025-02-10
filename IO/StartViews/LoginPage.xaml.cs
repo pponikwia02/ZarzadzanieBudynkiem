@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IO.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,26 +30,40 @@ namespace IO
         {
             this.NavigationService.Navigate(new RegistrationPage());
         }
-
+        public class LoginHandler
+        {
+            public static bool AuthenticateUser(string login, string password)
+            {
+                DataContext context = new DataContext();
+                {
+                    var user = context.Admin.FirstOrDefault(u => u.login == login && u.password == password);
+                    return user != null;
+                }
+            }
+        }
         private void Log_In_Btn_Click(object sender, RoutedEventArgs e)
         {
-            bool flag = false;
-            string username = Login_Box.Text;
+           
+            string login = Login_Box.Text;
             string password = Password_Box.Password;
-            if (password == string.Empty || username == string.Empty)
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Uzupełnij wszystkie pola!");
+                return;
             }
 
-            //TODO:
-            // Sprawdź czy taki użytkownik istnieje/wprowadzone dane sa poprawne
+            bool isAuthenticated = LoginHandler.AuthenticateUser(login, password);
 
-            if (password == "admin" && username == "admin") flag = true;
-            if(flag)
+            if (isAuthenticated)
             {
+                MessageBox.Show("Logowanie udane! Przechodzenie dalej...");
                 this.NavigationService.Navigate(new HomePage());
             }
-            
+            else
+            {
+                MessageBox.Show("Błąd logowania: niepoprawne dane.");
+            }
+
         }
     }
 }

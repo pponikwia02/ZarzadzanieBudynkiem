@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IO.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -27,65 +28,59 @@ namespace IO.MainApp
         {
             InitializeComponent();
         }
+        public class SalaRezerwacjaHandler
+        {
+            public static bool ZapiszRezerwacje(string NrSali,string Rezerwujący,string Od,string Do)
+            {
+                DataContext context = new DataContext();
+                {
+                    // Sprawdzenie, czy sala jest już zajęta w danym dniu
+                    bool istnieje = context.Sale.Any(s => s.NrSali == NrSali && s.Od== Od);
+                    if (istnieje)
+                    {
+                        return false; // Sala jest już zajęta
+                    }
 
+                    var nowaRezerwacja = new Sala
+                    {
+                        NrSali = NrSali,
+                        Rezerwujący=Rezerwujący,
+                        Od = Od,
+                        Do = Do
+                    };
+
+                    context.Sale.Add(nowaRezerwacja);
+                    context.SaveChanges();
+                    return true;
+                }
+                
+            }
+        }
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            // Sprawdzanie poprawności id
-            if (!int.TryParse(ClassroomIdTextBox.Text.Trim(), out int classId))
+
+            string NrSali=ClassroomIdTextBox.Text;
+            string rezerwujący=ClassroomNameTextBox.Text;
+            string Od=ReservationStartTextBox.Text;
+            string Do=ReservationEndTextBox.Text;
+
+            if (string.IsNullOrEmpty(NrSali) || string.IsNullOrEmpty(rezerwujący) || Od == null)
             {
-                MessageBox.Show("Podaj poprawne ID sali");
+                MessageBox.Show("Proszę uzupełnić wszystkie pola.");
                 return;
             }
 
-            // Sprawdzanie poprawności nazwy
-            string className = ClassroomNameTextBox.Text.Trim();
-            if (string.IsNullOrEmpty(className))
+            bool sukces = SalaRezerwacjaHandler.ZapiszRezerwacje(NrSali,rezerwujący,Od,Do);
+
+            if (sukces)
             {
-                MessageBox.Show("Podaj porawną nazwe sali.");
-                return;
+                MessageBox.Show("Rezerwacja zapisana!");
+            }
+            else
+            {
+                MessageBox.Show("Sala jest już zarezerwowana na ten dzień.");
             }
 
-            // Sprawdzanie poprawności rezerwującego
-            string reservedBy = ReservedByTextBox.Text.Trim();
-            if (string.IsNullOrEmpty(reservedBy))
-            {
-                MessageBox.Show("Podaj Imię i nazwisko osoby rezerwującej");
-                return;
-            }
-
-            // Sprawdzanie poprawności daty rozpoczęcia rezerwacji
-            if (!DateTime.TryParse(ReservationStartTextBox.Text.Trim(), CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime start))
-            {
-                MessageBox.Show("Podaj poprawną datę i godzinę rozpoczęcia rezerwacji");
-                return;
-            }
-
-            // Sprawdzanie poprawności daty zakończenia rezerwacji
-            if (!DateTime.TryParse(ReservationEndTextBox.Text.Trim(), CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime end))
-            {
-                MessageBox.Show("Podaj poprawną datę i godzinę zakończenia rezerwacji");
-                return;
-            }
-
-            if (end <= start)
-            {
-                MessageBox.Show("Sprawdz daty rezerwacji.");
-                return;
-            }
-
-           
-            NewReservation = new Classroom
-            {
-                Id = classId,
-                Name = className,
-                ReservedBy = reservedBy,
-                ReservationStart = start,
-                ReservationEnd = end,
-                IsReserved = true
-            };
-
-            DialogResult = true;
-            Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

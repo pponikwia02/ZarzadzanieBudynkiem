@@ -43,8 +43,9 @@
                     <GridViewColumn Header="Do" DisplayMemberBinding="{Binding ReservationEnd}" Width="100"/>
                 </GridView>
             </ListView.View>
-        </ListView>
 
+        </ListView>
+        <DataGrid x:Name="myDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,98,353,98" Grid.Row="1"/>
         <!-- Przyciski -->
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="5">
             <Button Content="Reserve" x:Name="ReserveButton" 

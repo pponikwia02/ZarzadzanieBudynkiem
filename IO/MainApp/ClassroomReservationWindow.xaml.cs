@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IO.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -42,6 +43,8 @@ namespace IO.MainApp
             buildingName = building;
             BuildingNameTextBlock.Text = $"{buildingName}";
             ClassroomsListView.ItemsSource = classrooms;
+            DataContext context = new DataContext();
+            myDataGrid.ItemsSource=context.Sale.ToList();
         }
 
         // Wyszukaj sale w polu Search

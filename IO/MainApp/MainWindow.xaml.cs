@@ -20,6 +20,9 @@ namespace IO
         {
             InitializeComponent();
             MainFrame.Navigate(new LoginPage());
+
+           
+            
         }
     }
 }
