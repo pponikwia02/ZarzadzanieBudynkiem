@@ -42,8 +42,8 @@
 
             <!-- Przyciski -->
             <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="5">
-            <Button Content="Create" Width="75" Margin="5" Click="CreateButton_Click"/>
-                <Button Content="Cancel" Width="75" Margin="5" Click="CancelButton_Click"/>
+            <Button Content="Zarezerwuj" Width="75" Margin="5" Click="CreateButton_Click"/>
+                <Button Content="Zamknij" Width="75" Margin="5" Click="CancelButton_Click"/>
             </StackPanel>
        
     </Grid>
