@@ -25,12 +25,8 @@ namespace IO.MainApp
 
         //TODO Przechowywanie sal w bazie danych. Na razie może być tak
         //Observable Collection Reprezentuje dynamiczną kolekcję danych, która dostarcza powiadomienia po dodaniu lub usunięciu elementów albo odświeżeniu całej listy.
-        private ObservableCollection<Classroom> classrooms = new ObservableCollection<Classroom>
-        {
-         
-            new Classroom { Id = 2, Name = "Room 102", Seats = 25, IsReserved = true, ReservedBy = "Alice", ReservationStart = DateTime.Now.AddMinutes(10), ReservationEnd = DateTime.Now.AddHours(1) },
-            
-        };
+        private ObservableCollection<Classroom> classrooms = new ObservableCollection<Classroom>();
+       
 
         //trzyma wybrane sale
         private Classroom selectedClassroom;

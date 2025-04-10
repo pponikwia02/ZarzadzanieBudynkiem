@@ -1,4 +1,5 @@
 ﻿using IO.DataBase;
+using IO.MainApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace IO
             {
                 DataContext context = new DataContext();
                 {
-                    var user = context.Admin.FirstOrDefault(u => u.login == login && u.password == password);
+                    var user = context.Users.FirstOrDefault(u => u.login == login && u.password == password);
                     return user != null;
                 }
             }
@@ -46,6 +47,9 @@ namespace IO
            
             string login = Login_Box.Text;
             string password = Password_Box.Password;
+
+            using var context = new DataContext();
+            var user = context.Users.FirstOrDefault(u => u.login == login && u.password == password);
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Uzupełnij wszystkie pola!");
@@ -54,10 +58,17 @@ namespace IO
 
             bool isAuthenticated = LoginHandler.AuthenticateUser(login, password);
 
-            if (isAuthenticated)
+            if (user!=null)
             {
                 MessageBox.Show("Logowanie udane! Przechodzenie dalej...");
-                this.NavigationService.Navigate(new HomePage());
+                if (user.UserType =="Administrator")
+                {
+                    this.NavigationService.Navigate(new AdminDashboard());
+                }
+                else
+                {
+                    this.NavigationService.Navigate(new HomePage());
+                }
             }
             else
             {

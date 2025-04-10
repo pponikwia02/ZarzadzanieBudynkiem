@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IO
+namespace IO.MainApp
 {
     public class Sala
     {
         [Key]
-        public int IdSali {  get; set; }
+        public int IdSali { get; set; }
         public required string NrSali { get; set; }
-        public required string Rezerwujący {  get; set; }
-        public required string Od {  get; set; }
-        public required string Do {  get; set; }    
+        public required string Rezerwujący { get; set; }
+        public required string Od { get; set; }
+        public required string Do { get; set; }
     }
 }

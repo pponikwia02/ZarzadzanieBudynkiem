@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace IO.DataBase
 {
-    public class Admin
+    public class AppUser
     {
         [Key]
         public int id { get; set; }
         public required string login { get; set; }
         public required string password { get; set; }
+        public required string UserType { get; set; }
+
     }
 }

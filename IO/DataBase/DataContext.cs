@@ -15,7 +15,7 @@ namespace IO.DataBase
         {
             optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=Administratorzy;Integrated Security=True;Encrypt=False;Trust Server Certificate=False;");
         }
-        public DbSet<Admin> Admin { get; set; }
+        public DbSet<AppUser>Users { get; set; }
         public DbSet<Sala>Sale { get; set; }
     }
 }

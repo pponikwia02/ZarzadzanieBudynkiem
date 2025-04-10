@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:IO"
              StartupUri="MainApp\MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="BuildingToolTipStyle" TargetType="ToolTip">
+            <Setter Property="Background" Value="#FFEEEEDD"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="HasDropShadow" Value="True"/>
+        </Style>
     </Application.Resources>
 </Application>

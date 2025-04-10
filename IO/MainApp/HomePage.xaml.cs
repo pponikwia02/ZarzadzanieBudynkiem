@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using IO.DataBase;
 using IO.MainApp;
 
 namespace IO
@@ -22,94 +23,98 @@ namespace IO
     /// </summary>
     public partial class HomePage : Page
     {
+        // Słownik przechowujący kolory dla budynków
+        private readonly Dictionary<string, Brush> buildingColors = new()
+        {
+            {"Budynek L (Świętka)", new SolidColorBrush(Color.FromRgb(255, 200, 0))},
+            {"Budynek A (Biblioteka)", new SolidColorBrush(Color.FromRgb(0, 150, 255))},
+            {"Budynek B (Welcome Point)", new SolidColorBrush(Color.FromRgb(100, 255, 100))},
+            {"Budynek H (Dziekanaty)", new SolidColorBrush(Color.FromRgb(255, 100, 255))},
+            {"Budynek G (Biuro Rektora)", new SolidColorBrush(Color.FromRgb(255, 100, 100))},
+            {"Budynek F (Laboratoria)", new SolidColorBrush(Color.FromRgb(100, 255, 255))},
+            {"Budynek E (Aula)", new SolidColorBrush(Color.FromRgb(200, 100, 255))},
+            {"Budynek C (Ślademiska)", new SolidColorBrush(Color.FromRgb(255, 255, 100))}
+        };
+
         public HomePage()
         {
             InitializeComponent();
         }
-      
-        private void Building_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void Building_MouseEnter(object sender, MouseEventArgs e)
         {
-            // Otwarcie okna rezerwacji
-            if (sender is Rectangle clickedRectangle)
+            if (sender is Rectangle building)
             {
-                string selectedBuilding = clickedRectangle.Name.ToString(); // Pobranie nazwy budynku
-                ClassroomReservationWindow reservationWindow = new ClassroomReservationWindow(selectedBuilding);
-                reservationWindow.Show();
+                string buildingName = building.Tag.ToString();
+
+                // Podświetlenie budynku
+                building.Stroke = buildingColors[buildingName];
+                building.StrokeThickness = 3;
+                building.Fill = new SolidColorBrush(Color.FromArgb(60,
+                    ((SolidColorBrush)buildingColors[buildingName]).Color.R,
+                    ((SolidColorBrush)buildingColors[buildingName]).Color.G,
+                    ((SolidColorBrush)buildingColors[buildingName]).Color.B));
+
+                // Dynamiczny tooltip z informacjami
+                var toolTip = new ToolTip
+                {
+                    Style = (Style)FindResource("BuildingToolTipStyle"),
+                    Content = CreateToolTipContent(buildingName)
+                };
+                building.ToolTip = toolTip;
             }
-
-        }
-        private void Rectangle1_MouseEnter(object sender, MouseEventArgs e)
-        {
-            
-            LabB.Fill = new SolidColorBrush(Colors.Magenta);
         }
 
-        private void Rectangle1_MouseLeave(object sender, MouseEventArgs e)
+        private StackPanel CreateToolTipContent(string buildingName)
         {
-           
-            LabB.Fill = new SolidColorBrush(Colors.DarkMagenta);
-        }
-        private void Rectangle2_MouseEnter(object sender, MouseEventArgs e)
-        {
-            LabA.Fill = new SolidColorBrush(Colors.LightBlue);
-           
+            using var context = new DataContext();
+            int roomCount = context.Sale.Count(s => s.NrSali.StartsWith(buildingName.Substring(7, 1)));
+
+            return new StackPanel
+            {
+                Children =
+                {
+                    new TextBlock
+                    {
+                        Text = buildingName,
+                        FontWeight = FontWeights.Bold,
+                        FontSize = 14,
+                        Foreground = buildingColors[buildingName]
+                    },
+                    new TextBlock
+                    {
+                        Text = $"Liczba sal: {roomCount}",
+                        FontStyle = FontStyles.Italic
+                    },
+                    new TextBlock
+                    {
+                        Text = "Kliknij, aby zarezerwować",
+                        TextDecorations = TextDecorations.Underline
+                    }
+                }
+            };
         }
 
-        private void Rectangle2_MouseLeave(object sender, MouseEventArgs e)
+        private void Building_MouseLeave(object sender, MouseEventArgs e)
         {
-        
-            LabA.Fill = new SolidColorBrush(Colors.DarkCyan);
-        
-        }
-        private void Rectangle3_MouseEnter(object sender, MouseEventArgs e)
-        {
-        
-            BudynekL.Fill = new SolidColorBrush(Colors.LightPink);
-       
+            if (sender is Rectangle building)
+            {
+                building.Stroke = Brushes.Transparent;
+                building.Fill = Brushes.Transparent;
+                building.ToolTip = null;
+            }
         }
 
-        private void Rectangle3_MouseLeave(object sender, MouseEventArgs e)
+        private void Building_Click(object sender, MouseButtonEventArgs e)
         {
-          
-            BudynekL.Fill=new SolidColorBrush(Colors.Magenta);
-
-        }
-        private void Rectangle4_MouseEnter(object sender, MouseEventArgs e)
-        {
-           
-            BudynekA.Fill = new SolidColorBrush(Colors.LightYellow);
-         
-        }
-
-        private void Rectangle4_MouseLeave(object sender, MouseEventArgs e)
-        {
-           
-            BudynekA.Fill = new SolidColorBrush(Colors.Yellow);
-           
-        }
-        private void Rectangle5_MouseEnter(object sender, MouseEventArgs e)
-        {
-            
-            BudynekB.Fill = new SolidColorBrush(Colors.LightGreen);
-         
-        }
-
-        private void Rectangle5_MouseLeave(object sender, MouseEventArgs e)
-        {
-        
-            BudynekB.Fill = new SolidColorBrush(Colors.Green);
-         
-        }
-        private void Rectangle6_MouseEnter(object sender, MouseEventArgs e)
-        {
-            Gimnastyczna.Fill = new SolidColorBrush(Colors.LightBlue);
-          
-        }
-
-        private void Rectangle6_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Gimnastyczna.Fill = new SolidColorBrush(Colors.Blue);
-     
+            if (sender is Rectangle building)
+            {
+                string buildingName = building.Tag.ToString();
+                ClassroomReservationWindow reservationWindow = new ClassroomReservationWindow(buildingName);
+                reservationWindow.Owner = Window.GetWindow(this);
+                reservationWindow.ShowDialog();
+            }
         }
     }
 }
+
