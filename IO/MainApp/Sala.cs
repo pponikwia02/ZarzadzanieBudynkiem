@@ -13,7 +13,7 @@ namespace IO.MainApp
         [Key]
         public int IdSali { get; set; }
         public required string NrSali { get; set; }
-        public required string Rezerwujący { get; set; }
+        public required string Rezerwujacy { get; set; }
         public required string Od { get; set; }
         public required string Do { get; set; }
     }

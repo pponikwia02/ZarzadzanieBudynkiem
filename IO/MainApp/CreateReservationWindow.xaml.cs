@@ -31,7 +31,7 @@ namespace IO.MainApp
         }
         public class SalaRezerwacjaHandler
         {
-            public static bool ZapiszRezerwacje(string NrSali,string Rezerwujący,string Od,string Do)
+            public static bool ZapiszRezerwacje(string NrSali,string Rezerwujacy,string Od,string Do)
             {
                 DataContext context = new DataContext();
                 {
@@ -45,7 +45,7 @@ namespace IO.MainApp
                     var nowaRezerwacja = new Sala
                     {
                         NrSali = NrSali,
-                        Rezerwujący=Rezerwujący,
+                        Rezerwujacy=Rezerwujacy,
                         Od = Od,
                         Do = Do
                     };
@@ -61,17 +61,17 @@ namespace IO.MainApp
         {
 
             string NrSali=ClassroomIdTextBox.Text;
-            string rezerwujący=ClassroomNameTextBox.Text;
+            string rezerwujacy=ClassroomNameTextBox.Text;
             string Od=ReservationStartTextBox.Text;
             string Do=ReservationEndTextBox.Text;
 
-            if (string.IsNullOrEmpty(NrSali) || string.IsNullOrEmpty(rezerwujący) || Od == null)
+            if (string.IsNullOrEmpty(NrSali) || string.IsNullOrEmpty(rezerwujacy) || Od == null)
             {
                 MessageBox.Show("Proszę uzupełnić wszystkie pola.");
                 return;
             }
 
-            bool sukces = SalaRezerwacjaHandler.ZapiszRezerwacje(NrSali,rezerwujący,Od,Do);
+            bool sukces = SalaRezerwacjaHandler.ZapiszRezerwacje(NrSali,rezerwujacy,Od,Do);
 
             if (sukces)
             {
