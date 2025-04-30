@@ -16,59 +16,89 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="434.62"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="NZaloguj"
-                    Text="Zaloguj sie" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Top" 
-                    FontSize="35"
-                    Foreground="Purple"
-                    Height="50"
-                    Width="180" Margin="0,36,0,0" Grid.Row="4"/>
-            <TextBlock Grid.Row="4"
-                    Text="Podaj login"
-                    Margin="191,149,-91,267"
-                    FontSize="14"/>
-            <TextBox x:Name="Login_Box"
-                  Grid.Row="4"
-                  Width="400"
-                  Height="20"
-                 Margin="0,173,0,0"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Top"/>
-            <TextBlock Grid.Row="4"
-        Text="Podaj hasło"
-        Margin="191,230,-91,185"
-        FontSize="14"/>
-            <PasswordBox x:Name="Password_Box"
-                      Grid.Row="4"
-                      Width="400"
-                      Height="20"
-                      Margin="0,255,0,0"
-                      VerticalAlignment="Top"
-                      HorizontalAlignment="Center"/>
-            <Button x:Name="Rejestracja_Btn"
-                    Grid.Row="4"
-                 BorderThickness="0"
-                    Content="Zarejestruj się"
-                    Foreground="Blue"
-                 Background="Transparent"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    FontSize="13"
-                    FontStyle="Italic"
-                 Click="Rejestracja_Btn_MouseDown" Margin="0,322,0,0"/>
-            <Button x:Name="Log_In_Btn"
-                 Grid.Row="4"
-                 Margin="0,362,0,0"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Top"
-                 Content="Zaloguj sie"
-                 Background="AliceBlue"
-                 Width="78"
-                    Click="Log_In_Btn_Click"
-                 Height="23"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!-- tekst zaloguj sie -->
+            <TextBlock 
+                x:Name="NZaloguj"
+                Text="Zaloguj sie"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                FontSize="35"
+                Foreground="Purple"
+                Height="50" 
+                Width="180"
+                Margin="0,36,0,0"
+                Grid.Row="4"
+                Grid.ColumnSpan="2"/>
+
+            <!-- logowanie -->
+            <TextBlock 
+                Grid.Row="4"
+                Text="login"
+                Margin="191,149,-91,267"
+                FontSize="14"
+                Grid.ColumnSpan="2"/>
+            <TextBox
+                x:Name="Login_Box"
+                Text="Username"
+                Grid.Row="4"
+                Width="400"
+                Height="20"
+                Margin="0,173,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Grid.ColumnSpan="2"/>
+            <TextBlock
+                Grid.Row="4"
+                Text="hasło"
+                Margin="191,230,-91,185"
+                FontSize="14"
+                Grid.ColumnSpan="2"/>
+            <PasswordBox 
+                x:Name="Password_Box"
+                Grid.Row="4"
+                Width="400"
+                Height="20"
+                Margin="0,255,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Grid.ColumnSpan="2"
+                />
+
+            <!-- przycisk zarejestruj sie -->
+            <Button 
+                x:Name="Rejestracja_Btn"
+                Grid.Row="4"
+                BorderThickness="0"
+                Content="Zarejestruj się"
+                Foreground="Blue"
+                Background="Transparent"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="13"
+                FontStyle="Italic"
+                Click="Rejestracja_Btn_MouseDown"
+                Margin="352,308,0,0"
+                Grid.ColumnSpan="2"/>
+
+            <!-- przycisk zaloguj sie -->
+            <Button
+                x:Name="Log_In_Btn"
+                Grid.Row="4"
+                Margin="122,306,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Zaloguj sie"
+                Background="LightGreen"
+                Width="78"
+                Click="Log_In_Btn_Click"
+                Height="23" Grid.Column="1"
+                />
         </Grid>
     </Grid>
 </Page>

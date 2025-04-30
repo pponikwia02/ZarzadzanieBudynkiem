@@ -1,21 +1,33 @@
 ﻿<Page x:Class="IO.MainApp.AdminDashboard"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Admin Dashboard">
+      Title="AdminDashboard">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Panel Administracyjny" FontSize="24" HorizontalAlignment="Center" Margin="10"/>
+        <TextBlock 
+            Text="Panel Administracyjny"
+            FontSize="24"
+            HorizontalAlignment="Center"
+            Margin="10"/>
 
         <TabControl Grid.Row="1">
             <TabItem Header="Zarządzanie użytkownikami">
-                <DataGrid x:Name="UsersGrid" AutoGenerateColumns="True"/>
+                <DataGrid 
+                    x:Name="UsersGrid"
+                    AutoGenerateColumns="True"/>
             </TabItem>
-            <TabItem Header="Zarządzanie salami" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
-                <DataGrid x:Name="ClassroomsGrid" AutoGenerateColumns="True"/>
+            <TabItem 
+                Header="Zarządzanie salami"
+                Height="22"
+                Margin="-2,-2,-2,0"
+                VerticalAlignment="Top">
+                <DataGrid 
+                    x:Name="ClassroomsGrid"
+                    AutoGenerateColumns="True"/>
             </TabItem>
             <TabItem Header="Statystyki">
                 <StackPanel>

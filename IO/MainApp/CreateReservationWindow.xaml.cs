@@ -23,7 +23,9 @@ namespace IO.MainApp
     public partial class CreateReservationWindow : Window
     {
         // Propercja do przechowywania nowej rezerwacji
+        //okno do rezerwacji
         public Classroom NewReservation { get;   set; }
+        public bool IsReservationSuccessful {  get; set; }
 
         public CreateReservationWindow()
         {
@@ -54,7 +56,7 @@ namespace IO.MainApp
                     context.SaveChanges();
                     return true;
                 }
-                
+               
             }
         }
         private void CreateButton_Click(object sender, RoutedEventArgs e)
@@ -75,7 +77,9 @@ namespace IO.MainApp
 
             if (sukces)
             {
+                IsReservationSuccessful = true;
                 MessageBox.Show("Rezerwacja zapisana!");
+                Close();
             }
             else
             {

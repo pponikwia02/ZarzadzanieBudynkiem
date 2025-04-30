@@ -20,13 +20,14 @@ namespace IO.MainApp
     /// <summary>
     /// Logika interakcji dla klasy ClassroomReservationWindow.xaml
     /// </summary>
+  
     public partial  class ClassroomReservationWindow : Window
     {
 
-        //TODO Przechowywanie sal w bazie danych. Na razie może być tak
+        //okno po naciśnięciu na budynek
         //Observable Collection Reprezentuje dynamiczną kolekcję danych, która dostarcza powiadomienia po dodaniu lub usunięciu elementów albo odświeżeniu całej listy.
         private ObservableCollection<Classroom> classrooms = new ObservableCollection<Classroom>();
-       
+        private ObservableCollection<Sala>Sale =new ObservableCollection<Sala>();
 
         //trzyma wybrane sale
         private Classroom selectedClassroom;
@@ -40,15 +41,39 @@ namespace IO.MainApp
             BuildingNameTextBlock.Text = $"{buildingName}";
             ClassroomsListView.ItemsSource = classrooms;
             DataContext context = new DataContext();
-            myDataGrid.ItemsSource=context.Sale.ToList();
+            myDataGrid.ItemsSource = context.Sale.ToList();
+           
+        }
+        private void RefreshDataGrid()
+        {
+           
+            myDataGrid.ItemsSource = null;
+            myDataGrid.ItemsSource = Sale;
         }
 
         // Wyszukaj sale w polu Search
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string searchText = SearchTextBox.Text.ToLower();
-            var filtered = classrooms.Where(c => c.Name.ToLower().Contains(searchText)).ToList();
-            ClassroomsListView.ItemsSource = filtered;
+            string searchText = SearchTextBox.Text.ToLower().Trim();
+
+            if(Sale==null || Sale.Count == 0)
+            {
+                using var context= new DataContext();
+                Sale=new ObservableCollection<Sala>(context.Sale.ToList());
+            }
+
+            if (string.IsNullOrEmpty(searchText)) 
+            {
+                myDataGrid.ItemsSource=Sale;
+                return;
+            }
+
+            var filtered = Sale.Where(s => s.NrSali.ToLower().Contains(searchText) ||
+           
+            s.Od.ToLower().Contains(searchText) ||
+            s.Do.ToLower().Contains(searchText)).ToList();
+
+            myDataGrid.ItemsSource= filtered;
         }
 
         //
@@ -67,26 +92,16 @@ namespace IO.MainApp
             }
         }
         
-        // Rezerwacja sali ( jeśli jeszcze nie została zarezerwowana)
+       //Rezerwacja sali oraz odświeżenie datagridu 
         private void ReserveButton_Click(object sender, RoutedEventArgs e)
         {
             //Nowe okno
-            CreateReservationWindow createWindow = new CreateReservationWindow();
-            
-            createWindow.Owner = Application.Current.MainWindow;
-            if (createWindow.ShowDialog() == true)
+            var createWindow = new CreateReservationWindow();
+            createWindow.ShowDialog();
+            if (createWindow.IsReservationSuccessful)
             {
-                Classroom newReservation = createWindow.NewReservation;
-                if (newReservation != null)
-                {
-                    // Zaznacza że sala jest zarezerwowana.
-                    newReservation.IsReserved = true;
-                  
-                    classrooms.Add(newReservation);
-                    MessageBox.Show("Rezerwacja dodana poprawnie");
-                    // Refresh listy
-                    ClassroomsListView.Items.Refresh();
-                }
+                using var context = new DataContext();
+                myDataGrid.ItemsSource=context.Sale.ToList();
             }
         }
 

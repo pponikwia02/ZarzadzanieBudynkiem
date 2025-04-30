@@ -47,7 +47,6 @@ namespace IO
            
             string login = Login_Box.Text;
             string password = Password_Box.Password;
-
             using var context = new DataContext();
             var user = context.Users.FirstOrDefault(u => u.login == login && u.password == password);
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
@@ -58,16 +57,22 @@ namespace IO
 
             bool isAuthenticated = LoginHandler.AuthenticateUser(login, password);
 
+            
+
             if (user!=null)
             {
                 MessageBox.Show("Logowanie udane! Przechodzenie dalej...");
-                if (user.UserType =="Administrator")
+                if (user.UserType==1)
                 {
+
                     this.NavigationService.Navigate(new AdminDashboard());
+                    MessageBox.Show($"zalogowaleś się do panelu Administratora");
                 }
                 else
                 {
+
                     this.NavigationService.Navigate(new HomePage());
+                    MessageBox.Show($"zalogowaleś się do panelu Wykładowcy");
                 }
             }
             else

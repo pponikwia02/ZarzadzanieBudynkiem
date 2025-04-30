@@ -1,7 +1,7 @@
 ﻿<Page x:Class="IO.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="HomePag"
+      Title="HomePage"
       Width="1100" Height="1083">
 
     <Grid>
@@ -10,27 +10,40 @@
 
         <!-- Interaktywne obszary budynków -->
         <Canvas>
-            <!-- Budynek L (Świętka) -->
-            <Rectangle x:Name="BuildingL" 
-                       Width="517" Height="85"
-                       Canvas.Left="107" Canvas.Top="264"
-                       Fill="Transparent" Stroke="Transparent"
-                       Cursor="Hand"
-                       MouseEnter="Building_MouseEnter"
-                       MouseLeave="Building_MouseLeave"
-                       MouseLeftButtonDown="Building_Click"
-                       Tag="Budynek L (Świętka)" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <!-- Budynek L  -->
+            <Rectangle 
+                x:Name="BuildingL"
+                Width="517"
+                Height="85" 
+                Canvas.Left="107"
+                Canvas.Top="264"
+                Fill="Transparent"
+                Stroke="Transparent"
+                Cursor="Hand"
+                MouseEnter="Building_MouseEnter"
+                MouseLeave="Building_MouseLeave"
+                MouseLeftButtonDown="Building_Click"
+                Tag="Budynek L"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"/>
 
-            <!-- Budynek A (Biblioteka) -->
-            <Rectangle x:Name="BuildingA" 
-                       Width="290" Height="58"
-                       Canvas.Left="107" Canvas.Top="427"
-                       Fill="Transparent" Stroke="Transparent"
-                       Cursor="Hand"
-                       MouseEnter="Building_MouseEnter"
-                       MouseLeave="Building_MouseLeave"
-                       MouseLeftButtonDown="Building_Click"
-                       Tag="Budynek A (Biblioteka)" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+            <!-- Budynek A -->
+            <Rectangle
+                x:Name="BuildingA"
+                Width="290"
+                Height="58"
+                Canvas.Left="107"
+                Canvas.Top="427"
+                Fill="Transparent"
+                Stroke="Transparent"
+                Cursor="Hand"
+                MouseEnter="Building_MouseEnter"
+                MouseLeave="Building_MouseLeave"
+                MouseLeftButtonDown="Building_Click"
+                Tag="Budynek A"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -41,49 +54,62 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
 
-            <!-- Budynek B (Welcome Point) -->
-            <Rectangle x:Name="BuildingB" 
-                       Width="275" Height="55"
-                       Canvas.Left="107" Canvas.Top="598"
-                       Fill="Transparent" Stroke="Transparent"
-                       Cursor="Hand"
-                       MouseEnter="Building_MouseEnter"
-                       MouseLeave="Building_MouseLeave"
-                       MouseLeftButtonDown="Building_Click"
-                       Tag="Budynek B (Welcome Point)" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <!-- Budynek B  -->
+            <Rectangle 
+                x:Name="BuildingB" 
+                Width="275" Height="55"
+                Canvas.Left="107" Canvas.Top="598"
+                Fill="Transparent" Stroke="Transparent"
+                Cursor="Hand"
+                MouseEnter="Building_MouseEnter"
+                MouseLeave="Building_MouseLeave"
+                MouseLeftButtonDown="Building_Click"
+                Tag="Budynek B"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"/>
 
-            <!-- Budynek H (Dziekanaty) -->
-            <Rectangle x:Name="BuildingH" 
-                       Width="138" Height="60"
-                       Canvas.Left="195" Canvas.Top="899"
-                       Fill="Transparent" Stroke="Transparent"
-                       Cursor="Hand"
-                       MouseEnter="Building_MouseEnter"
-                       MouseLeave="Building_MouseLeave"
-                       MouseLeftButtonDown="Building_Click"
-                       Tag="Budynek H (Dziekanaty)" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <!-- Budynek H -->
+            <Rectangle 
+                x:Name="BuildingH" 
+                Width="138" Height="60"
+                Canvas.Left="195" Canvas.Top="899"
+                Fill="Transparent" Stroke="Transparent"
+                Cursor="Hand"
+                MouseEnter="Building_MouseEnter"
+                MouseLeave="Building_MouseLeave"
+                MouseLeftButtonDown="Building_Click"
+                Tag="Budynek H"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"/>
 
-            <!-- Budynek G (Biuro Rektora) -->
-            <Rectangle x:Name="BuildingG" 
-                       Width="230" Height="130"
-                       Canvas.Left="397" Canvas.Top="838"
-                       Fill="Transparent" Stroke="Transparent"
-                       Cursor="Hand"
-                       MouseEnter="Building_MouseEnter"
-                       MouseLeave="Building_MouseLeave"
-                       MouseLeftButtonDown="Building_Click"
-                       Tag="Budynek G (Biuro Rektora)" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <!-- Budynek G  -->
+            <Rectangle 
+                x:Name="BuildingG" 
+                Width="230" Height="130"
+                Canvas.Left="397" Canvas.Top="838"
+                Fill="Transparent" Stroke="Transparent"
+                Cursor="Hand"
+                MouseEnter="Building_MouseEnter"
+                MouseLeave="Building_MouseLeave"
+                MouseLeftButtonDown="Building_Click"
+                Tag="Budynek G"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"/>
 
-            <!-- Budynek F (Laboratoria) -->
-            <Rectangle x:Name="BuildingF" 
-                       Width="78" Height="83"
-                       Canvas.Left="759" Canvas.Top="744"
-                       Fill="Transparent" Stroke="Transparent"
-                       Cursor="Hand"
-                       MouseEnter="Building_MouseEnter"
-                       MouseLeave="Building_MouseLeave"
-                       MouseLeftButtonDown="Building_Click"
-                       Tag="Budynek F (Laboratoria)" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <!-- Budynek F  -->
+            <Rectangle 
+                x:Name="BuildingF" 
+                Width="78" Height="83"
+                Canvas.Left="759" Canvas.Top="744"
+                Fill="Transparent" Stroke="Transparent"
+                Cursor="Hand"
+                MouseEnter="Building_MouseEnter"
+                MouseLeave="Building_MouseLeave"
+                MouseLeftButtonDown="Building_Click"
+                Tag="Budynek F"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -94,16 +120,18 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
 
-            <!-- Budynek E (Aula) -->
-            <Rectangle x:Name="BuildingE" 
-                       Width="42" Height="52"
-                       Canvas.Left="802" Canvas.Top="898"
-                       Fill="Transparent" Stroke="Transparent"
-                       Cursor="Hand"
-                       MouseEnter="Building_MouseEnter"
-                       MouseLeave="Building_MouseLeave"
-                       MouseLeftButtonDown="Building_Click"
-                       Tag="Budynek E (Aula)" RenderTransformOrigin="0.5,0.5">
+            <!-- Budynek E  -->
+            <Rectangle 
+                x:Name="BuildingE" 
+                Width="42" Height="52"
+                Canvas.Left="802" Canvas.Top="898"
+                Fill="Transparent" Stroke="Transparent"
+                Cursor="Hand"
+                MouseEnter="Building_MouseEnter"
+                MouseLeave="Building_MouseLeave"
+                MouseLeftButtonDown="Building_Click"
+                Tag="Budynek E" 
+                RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -114,16 +142,19 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
 
-            <!-- Budynek C (Ślademiska) -->
-            <Rectangle x:Name="BuildingC" 
-                       Width="74" Height="197"
-                       Canvas.Left="904" Canvas.Top="689"
-                       Fill="Transparent" Stroke="Transparent"
-                       Cursor="Hand"
-                       MouseEnter="Building_MouseEnter"
-                       MouseLeave="Building_MouseLeave"
-                       MouseLeftButtonDown="Building_Click"
-                       Tag="Budynek C (Ślademiska)" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <!-- Budynek C  -->
+            <Rectangle 
+                x:Name="BuildingC" 
+                Width="74" Height="197"
+                Canvas.Left="904" Canvas.Top="689"
+                Fill="Transparent" Stroke="Transparent"
+                Cursor="Hand"
+                MouseEnter="Building_MouseEnter"
+                MouseLeave="Building_MouseLeave"
+                MouseLeftButtonDown="Building_Click"
+                Tag="Budynek C"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"/>
         </Canvas>
     </Grid>
 </Page>

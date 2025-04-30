@@ -22,28 +22,82 @@
             </Grid.ColumnDefinitions>
 
             <!-- Nr.Sali -->
-            <TextBlock Text=" Nr. Sali :" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="ClassroomIdTextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
+            <TextBlock 
+                Text=" Nr. Sali :"
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="5"
+                VerticalAlignment="Center"/>
+            
+            <TextBox
+                x:Name="ClassroomIdTextBox"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="5"/>
 
             <!-- Rezerwujący -->
-            <TextBlock Text="Rezerwujący :" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="ClassroomNameTextBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+            <TextBlock
+                Text="Rezerwujący :"
+                Grid.Row="1"
+                Grid.Column="0" Margin="5"
+                VerticalAlignment="Center"/>
+            
+            <TextBox 
+                x:Name="ClassroomNameTextBox"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="5"/>
 
             <!-- start -->
-            <TextBlock Text="Start (data) :" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBox x:Name="ReservationStartTextBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+            <TextBlock 
+                Text="Start (data) :"
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="5"
+                VerticalAlignment="Center"/>
+            
+            <TextBox 
+                x:Name="ReservationStartTextBox"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="5"/>
 
             <!--koniec -->
-            <TextBlock Text="koniec (data):" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="ReservationEndTextBox" Grid.Row="3" Grid.Column="1" Margin="5"
-                 ToolTip="Enter date and time (e.g., 2/15/2025 14:00)"/>
-
+            <TextBlock 
+                Text="koniec (data):"
+                Grid.Row="3"
+                Grid.Column="0"
+                Margin="5"
+                VerticalAlignment="Center"/>
             
+            <TextBox 
+                x:Name="ReservationEndTextBox"
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="5"
+                ToolTip="Enter date and time (e.g., 2/15/2025 14:00)"/>
 
             <!-- Przyciski -->
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="5">
-            <Button Content="Zarezerwuj" Width="75" Margin="5" Click="CreateButton_Click"/>
-                <Button Content="Zamknij" Width="75" Margin="5" Click="CancelButton_Click"/>
+            <StackPanel 
+                Orientation="Horizontal"
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Right"
+                Margin="5">
+                
+                <Button 
+                    Content="Zarezerwuj"
+                    Width="auto"
+                    Height="auto"
+                    Margin="5"
+                    Click="CreateButton_Click"/>
+                
+                <Button 
+                    Content="Zamknij"
+                    Width="auto"
+                    Height="auto"
+                    Margin="5"
+                    Click="CancelButton_Click"/>
             </StackPanel>
        
     </Grid>

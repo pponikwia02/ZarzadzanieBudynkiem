@@ -26,14 +26,14 @@ namespace IO
         // Słownik przechowujący kolory dla budynków
         private readonly Dictionary<string, Brush> buildingColors = new()
         {
-            {"Budynek L (Świętka)", new SolidColorBrush(Color.FromRgb(255, 200, 0))},
-            {"Budynek A (Biblioteka)", new SolidColorBrush(Color.FromRgb(0, 150, 255))},
-            {"Budynek B (Welcome Point)", new SolidColorBrush(Color.FromRgb(100, 255, 100))},
-            {"Budynek H (Dziekanaty)", new SolidColorBrush(Color.FromRgb(255, 100, 255))},
-            {"Budynek G (Biuro Rektora)", new SolidColorBrush(Color.FromRgb(255, 100, 100))},
-            {"Budynek F (Laboratoria)", new SolidColorBrush(Color.FromRgb(100, 255, 255))},
-            {"Budynek E (Aula)", new SolidColorBrush(Color.FromRgb(200, 100, 255))},
-            {"Budynek C (Ślademiska)", new SolidColorBrush(Color.FromRgb(255, 255, 100))}
+            {"Budynek L", new SolidColorBrush(Color.FromRgb(255, 200, 0))},
+            {"Budynek A", new SolidColorBrush(Color.FromRgb(0, 150, 255))},
+            {"Budynek B", new SolidColorBrush(Color.FromRgb(100, 255, 100))},
+            {"Budynek H", new SolidColorBrush(Color.FromRgb(255, 100, 255))},
+            {"Budynek G", new SolidColorBrush(Color.FromRgb(255, 100, 100))},
+            {"Budynek F", new SolidColorBrush(Color.FromRgb(100, 255, 255))},
+            {"Budynek E", new SolidColorBrush(Color.FromRgb(200, 100, 255))},
+            {"Budynek C", new SolidColorBrush(Color.FromRgb(255, 255, 100))}
         };
 
         public HomePage()
@@ -68,7 +68,7 @@ namespace IO
         private StackPanel CreateToolTipContent(string buildingName)
         {
             using var context = new DataContext();
-            int roomCount = context.Sale.Count(s => s.NrSali.StartsWith(buildingName.Substring(7, 1)));
+            var roomCount = context.Sale.Count().ToString();
 
             return new StackPanel
             {
@@ -83,7 +83,7 @@ namespace IO
                     },
                     new TextBlock
                     {
-                        Text = $"Liczba sal: {roomCount}",
+                        Text = $"Liczba rezerwacji: {roomCount}",
                         FontStyle = FontStyles.Italic
                     },
                     new TextBlock

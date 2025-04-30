@@ -6,32 +6,72 @@
 
     <Grid>
         <Image Source="/res/img/login.jpg" Stretch="UniformToFill"/>
-        <Grid Background="White" Margin="408,282,408,282">
+        <Grid 
+            Background="White"
+            Margin="408,282,408,282">
 
 
-            <TextBlock Text="Stwórz konto"  FontSize="35" Foreground="Purple" HorizontalAlignment="Left" Margin="267,20,0,363"/>
-            <TextBlock Text="Typ konta:" FontSize="14" Margin="228,102,487,312"/>
+            <TextBlock 
+                Text="Stwórz konto"
+                FontSize="35"
+                Foreground="Purple"
+                HorizontalAlignment="Left"
+                Margin="267,20,0,363"/>
+            
+            <TextBlock
+                Text="Typ konta:"
+                FontSize="14"
+                Margin="228,102,487,312"/>
+            
             <!-- Pole wyboru typu użytkownika -->
-            <StackPanel  Margin="264,101,312,277" RenderTransformOrigin="0.509,0.539">
-                <ComboBox x:Name="UserTypeComboBox" 
-                          Width="113" 
-                          SelectedIndex="0" Height="30">
-                    <ComboBoxItem Content="Wykładowca"/>
-                    <ComboBoxItem Content="Administrator"/>
+            <StackPanel  
+                Margin="264,101,312,277"
+                RenderTransformOrigin="0.509,0.539">
+                <ComboBox 
+                    x:Name="UserTypeComboBox" 
+                    Width="113" 
+                    SelectedIndex="0"
+                    Height="30">
+                   
                 </ComboBox>
             </StackPanel>
 
             <!-- Reszta formularza pozostaje bez zmian -->
-            <TextBlock Text="Podaj login:" FontSize="14" Margin="192,184,520,226"/>
-            <TextBox x:Name="Login_Box"  Width="400" Height="20" Margin="192,210,192,206"/>
+            <TextBlock 
+                Text="Podaj login:"
+                FontSize="14"
+                Margin="192,184,520,226"/>
+            <TextBox 
+                x:Name="Login_Box"
+                Width="400"
+                Height="20"
+                Margin="192,210,192,206"/>
 
-            <TextBlock Text="Podaj hasło:"  FontSize="14" Margin="192,235,520,182"/>
-            <PasswordBox x:Name="Password_Box"  Width="400" Height="20" Margin="192,259,192,157"/>
+            <TextBlock 
+                Text="Podaj hasło:"
+                FontSize="14"
+                Margin="192,235,520,182"/>
+            <PasswordBox 
+                x:Name="Password_Box" 
+                Width="400"
+                Height="20"
+                Margin="192,259,192,157"/>
 
-            <TextBlock Text="Powtórz hasło:"  FontSize="14" Margin="192,284,503,133"/>
-            <PasswordBox x:Name="Password_Box_Repeat"  Width="400" Height="20" Margin="192,308,192,108"/>
+            <TextBlock 
+                Text="Powtórz hasło:"
+                FontSize="14"
+                Margin="192,284,503,133"/>
+            <PasswordBox 
+                x:Name="Password_Box_Repeat"
+                Width="400"
+                Height="20"
+                Margin="192,308,192,108"/>
 
-            <Button x:Name="Reg_Btn"  Content="Zarejestruj się" Margin="341,348,341,64" Click="Reg_Btn_Click"/>
+            <Button 
+                x:Name="Reg_Btn" 
+                Content="Zarejestruj się"
+                Margin="341,348,341,64"
+                Click="Reg_Btn_Click"/>
         </Grid>
     </Grid>
 </Page>

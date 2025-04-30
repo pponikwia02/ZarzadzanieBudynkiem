@@ -20,48 +20,119 @@
         </Grid.RowDefinitions>
 
         <!-- Search -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
-            <TextBlock Text="Search:" VerticalAlignment="Center"/>
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="5,0,0,0" 
-                     TextChanged="SearchTextBox_TextChanged"/>
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="0"
+            Margin="5">
+            <TextBlock 
+                Text="Search:"
+                VerticalAlignment="Center"/>
+
+            <TextBox
+                x:Name="SearchTextBox"
+                Width="200"
+                Margin="5,0,0,0" 
+                TextChanged="SearchTextBox_TextChanged"/>
         </StackPanel>
-        <TextBlock x:Name="BuildingNameTextBlock" 
-                   Text="Building Name" 
-                   FontSize="16" FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   Margin="10"/>
+
+        <TextBlock 
+            x:Name="BuildingNameTextBlock" 
+            Text="Building Name" 
+            FontSize="16"
+            FontWeight="Bold"
+            HorizontalAlignment="Center"
+            Margin="10"/>
+
         <!-- Lista -->
-        <ListView x:Name="ClassroomsListView" Grid.Row="1" Margin="5" 
-                  SelectionChanged="ClassroomsListView_SelectionChanged">
+        <ListView 
+            x:Name="ClassroomsListView"
+            Grid.Row="1"
+            Margin="5" 
+            SelectionChanged="ClassroomsListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Nazwa sali" DisplayMemberBinding="{Binding Name}" Width="150"/>
-                    <GridViewColumn Header="Siedzenia" DisplayMemberBinding="{Binding Seats}" Width="70"/>
-                    <GridViewColumn Header="Rezerwacja" DisplayMemberBinding="{Binding IsReserved}" Width="70"/>
-                    <GridViewColumn Header="Rezerwujący" DisplayMemberBinding="{Binding ReservedBy}" Width="100"/>
-                    <GridViewColumn Header="Od" DisplayMemberBinding="{Binding ReservationStart}" Width="100"/>
-                    <GridViewColumn Header="Do" DisplayMemberBinding="{Binding ReservationEnd}" Width="100"/>
+                    <GridViewColumn
+                        Header="Nazwa sali"
+                        DisplayMemberBinding="{Binding Name}"
+                        Width="150"/>
+                    <GridViewColumn 
+                        Header="Siedzenia"
+                        DisplayMemberBinding="{Binding Seats}"
+                        Width="70"/>
+                    <GridViewColumn 
+                        Header="Rezerwacja"
+                        DisplayMemberBinding="{Binding IsReserved}"
+                        Width="70"/>
+                    <GridViewColumn 
+                        Header="Rezerwujący"
+                        DisplayMemberBinding="{Binding ReservedBy}"
+                        Width="100"/>
+                    <GridViewColumn 
+                        Header="Od"
+                        DisplayMemberBinding="{Binding ReservationStart}"
+                        Width="100"/>
+                    <GridViewColumn 
+                        Header="Do"
+                        DisplayMemberBinding="{Binding ReservationEnd}"
+                        Width="100"/>
                 </GridView>
             </ListView.View>
 
         </ListView>
-        <DataGrid x:Name="myDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="48,70,315,126" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="0.447"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="1.705"/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
+        <DataGrid 
+            x:Name="myDataGrid"
+            AutoGenerateColumns="False"
+            Margin="5,5,5,72"
+            Grid.Row="1"
+            RenderTransformOrigin="0.475,0.495">
+            <DataGrid.Columns>
+               
+                <DataGridTextColumn 
+                    Header="Numer Sali"
+                    Binding="{Binding NrSali}">
+                    
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Header="Rezerwujący"
+                    Binding="{Binding Rezerwujacy}">
+                    
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Header="Data rozpoczęcia"
+                    Binding="{Binding Od}">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Header="Data zakończenia"
+                    Binding="{Binding Do}">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
         </DataGrid>
         <!-- Przyciski -->
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="5">
-            <Button Content="Rezerwuj" x:Name="ReserveButton" 
-                    Click="ReserveButton_Click" Margin="5"/>
-            <Button Content="Usuń Rezerwacje" x:Name="ChangeButton" 
-                    Click="ChangeButton_Click" IsEnabled="False" Margin="5"/>
-            <Button Content="Zamknij" Click="CloseButton_Click" Margin="5"/>
+        <StackPanel 
+            Orientation="Horizontal"
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Margin="5">
+
+            <Button 
+                Content="Rezerwuj"
+                x:Name="ReserveButton" 
+                Click="ReserveButton_Click"
+                Margin="5"/>
+
+            <Button 
+                Content="Usuń Rezerwacje"
+                x:Name="ChangeButton" 
+                Click="ChangeButton_Click"
+                IsEnabled="False"
+                Margin="5"/>
+
+            <Button 
+                Content="Zamknij"
+                Click="CloseButton_Click"
+                Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>

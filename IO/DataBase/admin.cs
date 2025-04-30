@@ -13,7 +13,7 @@ namespace IO.DataBase
         public int id { get; set; }
         public required string login { get; set; }
         public required string password { get; set; }
-        public required string UserType { get; set; }
+        public int UserType { get; set; } //0-wykładowca, 1- Admin
 
     }
 }
