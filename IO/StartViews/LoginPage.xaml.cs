@@ -48,7 +48,7 @@ namespace IO
             string login = Login_Box.Text;
             string password = Password_Box.Password;
             using var context = new DataContext();
-            var user = context.Users.FirstOrDefault(u => u.login == login && u.password == password);
+            var user = context.Users.FirstOrDefault(u => u.login == login);
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Uzupełnij wszystkie pola!");
@@ -61,7 +61,9 @@ namespace IO
 
             if (user!=null)
             {
-                MessageBox.Show("Logowanie udane! Przechodzenie dalej...");
+                //string inputHash=PasswordHasher.HashPassword(password);
+                //MessageBox.Show($"DEBUG: {user.password}  :   {inputHash}");
+                MessageBox.Show("Logowanie zakończone sukcesem");
                 if (user.UserType==1)
                 {
 

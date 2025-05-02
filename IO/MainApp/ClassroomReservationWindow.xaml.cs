@@ -44,13 +44,38 @@ namespace IO.MainApp
             myDataGrid.ItemsSource = context.Sale.ToList();
            
         }
-        private void RefreshDataGrid()
+        /*private void RefreshDataGrid()
         {
            
             myDataGrid.ItemsSource = null;
             myDataGrid.ItemsSource = Sale;
+        }*/
+        private void RefreshDataGrid()
+        {
+
+            using (var context = new DataContext()) 
+            {
+                Sale=new ObservableCollection<Sala>(context.Sale.ToList());
+                myDataGrid.ItemsSource = Sale;
+            }
         }
 
+        private Sala _selectedReservation;
+        private void MyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _selectedReservation = myDataGrid.SelectedItem as Sala;
+            ChangeButton.IsEnabled=_selectedReservation!=null;
+
+            if (_selectedReservation != null) 
+            {
+                ChangeButton.Background=Brushes.Aqua;
+
+            }
+            else
+            {
+                ChangeButton.Background = Brushes.LightGray;
+            }
+        }
         // Wyszukaj sale w polu Search
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -106,7 +131,7 @@ namespace IO.MainApp
         }
 
         //Zmiana rezerwacji
-        private void ChangeButton_Click(object sender, RoutedEventArgs e)
+        /*private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
             if (selectedClassroom != null)
             {
@@ -115,6 +140,32 @@ namespace IO.MainApp
                 ClassroomsListView.Items.Refresh();
                 classrooms.Remove(selectedClassroom);
              
+            }
+        }*/
+        private void ChangeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedReservation == null) return;
+
+            var result = MessageBox.Show($"Czy na pewno chcesz usunąć rezerweacje sali {_selectedReservation.NrSali}?","Potwierdzenie",MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.Yes) 
+            {
+                using (var context = new DataContext()) 
+                {
+                    var reservationToDelete=context.Sale.FirstOrDefault(s=>s.IdSali==_selectedReservation.IdSali);
+                    if (reservationToDelete != null) 
+                    {
+                        context.Sale.Remove(reservationToDelete);
+                        context.SaveChanges();
+
+                        RefreshDataGrid();
+                        _selectedReservation = null;
+                        ChangeButton.IsEnabled=false;
+                        ChangeButton.Background = Brushes.LightGray;
+
+                        MessageBox.Show("Rezerwacja została usunięta");
+                    }
+                }   
             }
         }
         private void CloseButton_Click(object sender, RoutedEventArgs e)

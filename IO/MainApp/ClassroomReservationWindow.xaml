@@ -82,6 +82,8 @@
         <DataGrid 
             x:Name="myDataGrid"
             AutoGenerateColumns="False"
+            SelectionChanged="MyDataGrid_SelectionChanged"
+            SelectionMode="Single"
             Margin="5,5,5,72"
             Grid.Row="1"
             RenderTransformOrigin="0.475,0.495">

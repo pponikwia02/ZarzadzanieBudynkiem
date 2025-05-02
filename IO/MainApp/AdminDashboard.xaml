@@ -6,6 +6,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <TextBlock 
@@ -18,7 +19,28 @@
             <TabItem Header="Zarządzanie użytkownikami">
                 <DataGrid 
                     x:Name="UsersGrid"
-                    AutoGenerateColumns="True"/>
+                    SelectionChanged="UsersGrid_SelectionChanged"
+                    SelectionMode="Single"
+                    AutoGenerateColumns="False"
+                    Grid.Row="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn 
+                            Header="Login użytkownika"
+                            Binding="{Binding login}">
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn 
+                            Header="Hasło użytkownika"
+                            Binding="{Binding password}">
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn 
+                            Header="Typ użytkownika (0 - wykładowca, 1- Admin)"
+                             Binding="{Binding UserType}">
+
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
             <TabItem 
                 Header="Zarządzanie salami"
@@ -27,7 +49,32 @@
                 VerticalAlignment="Top">
                 <DataGrid 
                     x:Name="ClassroomsGrid"
-                    AutoGenerateColumns="True"/>
+                    
+                    AutoGenerateColumns="False"
+                    Grid.Row="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn 
+                            Header="Numer Sali"
+                            Binding="{Binding NrSali}">
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn 
+                            Header="Rezerwujący"
+                            Binding="{Binding Rezerwujacy}">
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn 
+                            Header="Data rozpoczęcia"
+                            Binding="{Binding Od}">
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn 
+                            Header="Data zakończenia"
+                            Binding="{Binding Do}">
+
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
             <TabItem Header="Statystyki">
                 <StackPanel>
@@ -36,7 +83,33 @@
                     <TextBlock Text="Liczba aktywnych rezerwacji:"/>
                     <TextBlock x:Name="ReservationCountText"/>
                 </StackPanel>
+
             </TabItem>
         </TabControl>
+        <StackPanel 
+            Orientation="Horizontal"
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Margin="5">
+
+            <Button 
+                x:Name="AddButton" 
+                Click="AddButton_Click"
+                Margin="5">Dodaj użytkownika</Button>
+
+            <Button 
+                x:Name="DeleteButton" 
+                Click="DeleteButton_Click"
+                IsEnabled="False"
+                Margin="5">Usuń użytkownika</Button>
+            <Button 
+                x:Name="UpdateButton" 
+                Click="UpdateButton_Click"
+                IsEnabled="False"
+                Margin="5">Aktualizuj użytkownika</Button>
+            <Button 
+                Click="ExitButton_Click"
+                Margin="5">Zamknij</Button>
+        </StackPanel>
     </Grid>
 </Page>
