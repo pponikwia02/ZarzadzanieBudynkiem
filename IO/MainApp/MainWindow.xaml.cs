@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace IO
+namespace IO.MainApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -21,8 +21,8 @@ namespace IO
             InitializeComponent();
             MainFrame.Navigate(new LoginPage());
 
-           
-            
+
+
         }
     }
 }
