@@ -23,7 +23,7 @@ namespace IO.MainApp
         public AdminDashboard()
         {
             InitializeComponent();
-            
+            DataContext = new AdminDashboardViewModel();
         }
     }
 }
