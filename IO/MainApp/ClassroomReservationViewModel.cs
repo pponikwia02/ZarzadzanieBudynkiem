@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Collections.Specialized;
 using System.ComponentModel;
-
+//michal
 namespace IO.MainApp
 {
     public class ClassroomReservationViewModel : INotifyPropertyChanged

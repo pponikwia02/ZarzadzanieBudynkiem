@@ -7,15 +7,18 @@ namespace IO
     {
         public LoginPage()
         {
+          
             InitializeComponent();
+            this.DataContext = new LoginViewModel();
         }
 
        
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (DataContext is LoginViewModel vm)
+            if (this.DataContext is LoginViewModel vm)
             {
                 vm.Password = ((PasswordBox)sender).Password;
+                
             }
         }
     }

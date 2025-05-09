@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using IO.DataBase;
 using System.Windows.Input;
 using System.Windows;
-
+//michal
 namespace IO.MainApp
 {
     public class AddUserViewModel : INotifyPropertyChanged

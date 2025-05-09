@@ -6,14 +6,12 @@
       xmlns:local="clr-namespace:IO"
       xmlns:vm ="clr-namespace:IO"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1600"
+      Height="1000" Width="1600"
       Title="LoginPage">
-    <Page.DataContext>
-        <vm:LoginViewModel />
-    </Page.DataContext>
+    
     <Grid>
-        <Image Source="\res\img\login.jpg"/>
-        <Grid Background="White" Margin="408,283,408,282">
+        <Image Source="\res\img\login.jpg" Stretch="Fill"/>
+        <Grid Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="800">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -21,24 +19,24 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-
+              
             <!-- Tytuł -->
-            <TextBlock Text="Zaloguj się" HorizontalAlignment="Center" FontSize="35" Foreground="Purple" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,20"/>
+            <TextBlock Text="Zaloguj się" HorizontalAlignment="Center" FontSize="35" Foreground="Purple" Grid.Row="0" Margin="0,20"/>
 
-            <!-- Login Label -->
-            <TextBlock Text="Login" Grid.Row="1" HorizontalAlignment="Left" Margin="20,10,0,0"/>
-            <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Width="400" Height="25" Margin="100,10" HorizontalAlignment="Left"/>
+            <!-- Login -->
+            <TextBlock Text="Login" Grid.Row="1" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="20"/>
+            <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Width="400" Height="25" Margin="100,10" HorizontalAlignment="Right"/>
 
-            <!-- Password Label -->
-            <TextBlock Text="Hasło" Grid.Row="2" HorizontalAlignment="Left" Margin="20,10,0,0"/>
-            <PasswordBox x:Name="PasswordBox" Grid.Row="2" Width="400" Height="25" Margin="100,10" HorizontalAlignment="Left" PasswordChanged="PasswordBox_PasswordChanged"/>
+            <!-- Hasło  -->
+            <TextBlock Text="Hasło" Grid.Row="2" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="20"/>
+            <PasswordBox x:Name="PasswordBox" Grid.Row="2" Width="400" Height="25" Margin="100,10" HorizontalAlignment="Right" PasswordChanged="PasswordBox_PasswordChanged"/>
 
-            <!-- Rejestracja Button -->
+            <!-- Rejestracja Przycisk -->
             <Button Content="Zarejestruj się" Command="{Binding RegisterCommand}" Foreground="Blue" Background="Transparent"
-                    FontSize="13" FontStyle="Italic" BorderThickness="0" Grid.Row="3" Margin="100,10" HorizontalAlignment="Left"/>
+                    FontSize="13" FontStyle="Italic" BorderThickness="0" Grid.Row="3" Margin="100,10" HorizontalAlignment="Center"/>
 
-            <!-- Login Button -->
-            <Button Content="Zaloguj się" Command="{Binding LoginCommand}" Grid.Row="3" Margin="300,10" HorizontalAlignment="Left" Background="LightGreen" Width="100"/>
+            <!-- Login Przycisk -->
+            <Button Content="Zaloguj się" Command="{Binding LoginCommand}" Grid.Row="4" Margin="100,10" HorizontalAlignment="Center" Background="LightGreen" Width="100"/>
         </Grid>
     </Grid>
 </Page>

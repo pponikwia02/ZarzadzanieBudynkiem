@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+
 
 namespace IO.MainApp
 {
@@ -12,16 +10,20 @@ namespace IO.MainApp
         private const string salt = "yoursecretsalt";
         public static string HashPassword(string password)
         {
+            if (password == null) return null;
+
             using (var sha256 = SHA256.Create())
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password+salt));
-                return Convert.ToBase64String(bytes);
+                var inputBytes = Encoding.UTF8.GetBytes(password.Trim() + salt);
+                var hashBytes = sha256.ComputeHash(inputBytes);
+                return Convert.ToBase64String(hashBytes);
             }
         }
 
         public static bool VerifyPassword(string inputPassword, string hashedPassword)
         {
-            return HashPassword(inputPassword) == hashedPassword;
+            
+            return HashPassword(inputPassword) == hashedPassword.Trim();
         }
     }
 }

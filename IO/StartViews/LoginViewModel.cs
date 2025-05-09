@@ -1,6 +1,5 @@
 ﻿using IO.DataBase;
 using IO.MainApp;
-using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -10,6 +9,8 @@ namespace IO
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
+         protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
         private string _login;
         private string _password;
 
@@ -36,20 +37,20 @@ namespace IO
             RegisterCommand = new RelayCommand(RegisterExecute);
         }
 
-        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
+       
         private bool CanLoginExecute(object parameter) => !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password);
-
+        
         private void LoginExecute(object parameter)
         {
             using var context = new DataContext();
-            var user = context.Users.FirstOrDefault(u => u.login == Login && u.password == Password);
+            var user = context.Users.FirstOrDefault(u => u.login == Login);
+          var hash = PasswordHasher.HashPassword(Password);
+            MessageBox.Show($"HASH wpisanego hasła:\n{hash}\nZ bazy:\n{user.password}");
 
-            if (user != null)
+            if (user != null && PasswordHasher.VerifyPassword(Password, user.password))
             {
                 MessageBox.Show("Logowanie zakończone sukcesem");
 
-                var frame = Application.Current.MainWindow.Content as NavigationService;
                 if (user.UserType == 1)
                     ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new AdminDashboard());
                 else
