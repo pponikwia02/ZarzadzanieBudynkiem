@@ -3,17 +3,12 @@ using IO.MainApp;
 using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Navigation;
 using System.Windows.Controls;
 
 
 
 namespace IO
 {
-    /// <summary>
-    /// Logika interakcji dla klasy RegistrationPage.xaml
-    /// </summary>
     public partial class RegistrationPage : Page
     {
         public RegistrationPage()

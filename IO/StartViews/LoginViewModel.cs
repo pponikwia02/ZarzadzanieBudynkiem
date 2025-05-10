@@ -3,7 +3,6 @@ using IO.MainApp;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace IO
 {
@@ -44,8 +43,6 @@ namespace IO
         {
             using var context = new DataContext();
             var user = context.Users.FirstOrDefault(u => u.login == Login);
-          var hash = PasswordHasher.HashPassword(Password);
-            MessageBox.Show($"HASH wpisanego hasła:\n{hash}\nZ bazy:\n{user.password}");
 
             if (user != null && PasswordHasher.VerifyPassword(Password, user.password))
             {
