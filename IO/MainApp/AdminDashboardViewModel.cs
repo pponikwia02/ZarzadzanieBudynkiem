@@ -47,6 +47,7 @@ namespace IO.MainApp
             AddUserCommand = new RelayCommand(AddUser);
             DeleteUserCommand = new RelayCommand(DeleteUser, _ => IsUserSelected);
             UpdateUserCommand = new RelayCommand(UpdateUser, _ => IsUserSelected);
+            ExitCommand = new RelayCommand(Exit);
         }
 
         private void AddUser(object obj)
@@ -78,7 +79,10 @@ namespace IO.MainApp
                 }
             }
         }
-
+        private void Exit(object obj)
+        {
+            ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new HomePage());
+        }
         private void UpdateUser(object obj)
         {
             // Placeholder - dodaj okno edycji użytkownika

@@ -15,6 +15,7 @@ public class BuildingViewModel : INotifyPropertyChanged
 
     public int ReservationCount { get; private set; }
 
+
     public ICommand ClickCommand { get; }
 
     public BuildingViewModel(string name, Brush color, double width, double height, double left, double top, double rotation, Action<string> onClick)

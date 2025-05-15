@@ -38,13 +38,13 @@ namespace IO
             set { _selectedUserType = value; OnPropertyChanged(nameof(SelectedUserType)); }
         }
 
-        public ObservableCollection<UserTypeItem> UserTypes { get; }
+        public List<UserTypeItem> UserTypes { get; }
 
         public ICommand RegisterCommand { get; }
 
         public RegistrationViewModel()
         {
-            UserTypes = new ObservableCollection<UserTypeItem>(UserTypeItem.GetUserTypes());
+            UserTypes = new List<UserTypeItem>(UserTypeItem.GetUserTypes());
             SelectedUserType = UserTypes.FirstOrDefault();
 
             RegisterCommand = new RelayCommand(RegisterExecute);
