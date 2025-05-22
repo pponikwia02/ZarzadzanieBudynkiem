@@ -59,7 +59,7 @@
                                 </StackPanel>
                             </Rectangle.ToolTip>
 
-                            <!-- Obsługa kliknięcia -->
+                            
                             <Rectangle.InputBindings>
                                 <MouseBinding Gesture="LeftClick" Command="{Binding ClickCommand}" />
                             </Rectangle.InputBindings>

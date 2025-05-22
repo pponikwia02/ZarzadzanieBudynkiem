@@ -41,6 +41,7 @@ namespace IO
         public List<UserTypeItem> UserTypes { get; }
 
         public ICommand RegisterCommand { get; }
+       
 
         public RegistrationViewModel()
         {

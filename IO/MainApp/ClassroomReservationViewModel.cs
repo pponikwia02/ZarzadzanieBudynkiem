@@ -62,7 +62,13 @@ namespace IO.MainApp
         private void LoadSale()
         {
             using var context = new DataContext();
-            Sale = new ObservableCollection<Sala>(context.Sale.ToList());
+            string prefix = _buildingName.Split(' ').Last().ToLower();
+
+            var filtered = context.Sale
+                .Where(s => s.NrSali.ToLower().StartsWith(prefix))
+                .ToList();
+
+            Sale = new ObservableCollection<Sala>(filtered);
             OnPropertyChanged(nameof(Sale));
         }
 
@@ -115,7 +121,7 @@ namespace IO.MainApp
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string BuildingDisplayName => $"Budynek: {_buildingName}";
+        public string BuildingDisplayName => $"{_buildingName}";
         protected void OnPropertyChanged(string name) =>
            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }

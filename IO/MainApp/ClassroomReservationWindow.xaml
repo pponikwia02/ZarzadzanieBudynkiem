@@ -24,7 +24,7 @@
             <TextBox Width="200" Margin="5,0,0,0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
-        <TextBlock Text="{Binding BuildingName}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="10" Grid.Row="0" VerticalAlignment="Bottom"/>
+        <TextBlock Text="{Binding BuildingDisplayName}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="10" Grid.Row="0" VerticalAlignment="Bottom"/>
 
         <!-- Lists -->
         <Grid Grid.Row="1" Margin="5">

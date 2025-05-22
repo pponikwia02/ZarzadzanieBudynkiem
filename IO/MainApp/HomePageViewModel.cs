@@ -25,6 +25,12 @@ public class HomePageViewModel
     private void OnBuildingClick(string buildingName)
     {
         var window = new ClassroomReservationWindow(buildingName);
-        window.ShowDialog();
+        bool? result = window.ShowDialog();
+
+        if (result == true)
+        {
+            var building = Buildings.FirstOrDefault(b => b.Name == buildingName);
+            building?.Refresh();
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 public class BuildingViewModel : INotifyPropertyChanged
 {
+    protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     public string Name { get; set; }                
     public double Width { get; set; }
     public double Height { get; set; }
@@ -13,7 +14,17 @@ public class BuildingViewModel : INotifyPropertyChanged
     public double Rotation { get; set; }
     public Brush Color { get; set; }
 
-    public int ReservationCount { get; private set; }
+    private int _reservationCount;
+    public event PropertyChangedEventHandler PropertyChanged;
+    public int ReservationCount
+    {
+        get => _reservationCount;
+        private set
+        {
+            _reservationCount = value;
+            OnPropertyChanged(nameof(ReservationCount));
+        }
+    }
 
 
     public ICommand ClickCommand { get; }
@@ -37,7 +48,11 @@ public class BuildingViewModel : INotifyPropertyChanged
         using var context = new DataContext();
         
         ReservationCount = context.Sale.Count(s => s.NrSali.StartsWith(Name.Last().ToString()));
+        
     }
-
-    public event PropertyChangedEventHandler PropertyChanged;
+    public void Refresh()
+    {
+        LoadReservationCount(); 
+    }
+   
 }

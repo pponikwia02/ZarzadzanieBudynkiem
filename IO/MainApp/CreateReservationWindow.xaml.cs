@@ -28,10 +28,9 @@ namespace IO.MainApp
         {
             InitializeComponent();
 
-            if (DataContext is not CreateReservationViewModel vm)
-                DataContext = new CreateReservationViewModel();
-
-            (DataContext as CreateReservationViewModel).RequestClose += OnRequestClose;
+            var vm = new CreateReservationViewModel();
+            vm.RequestClose += OnRequestClose;
+            DataContext = vm;
         }
 
         private void OnRequestClose(bool success)

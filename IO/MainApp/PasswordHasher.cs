@@ -8,7 +8,7 @@ namespace IO.MainApp
     public static class PasswordHasher
     {
         private const string salt = "yoursecretsalt";
-        public static string HashPassword(string password)
+        public static string? HashPassword(string password)
         {
             if (password == null) return null;
 
