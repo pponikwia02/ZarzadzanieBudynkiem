@@ -1,8 +1,4 @@
-﻿using IO.DataBase;
-using IO.MainApp;
-using System;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 

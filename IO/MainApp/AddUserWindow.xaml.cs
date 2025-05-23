@@ -1,6 +1,4 @@
-﻿using IO.DataBase;
-using IO.MainApp;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows;
 
 namespace IO.MainApp

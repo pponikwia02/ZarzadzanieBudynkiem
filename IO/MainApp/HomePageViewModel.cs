@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
 using IO.MainApp;
 
@@ -27,10 +26,10 @@ public class HomePageViewModel
         var window = new ClassroomReservationWindow(buildingName);
         bool? result = window.ShowDialog();
 
-        if (result == true)
-        {
+       
+        
             var building = Buildings.FirstOrDefault(b => b.Name == buildingName);
             building?.Refresh();
-        }
+        
     }
 }

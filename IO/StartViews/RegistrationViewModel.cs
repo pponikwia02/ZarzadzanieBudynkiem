@@ -1,6 +1,5 @@
 ﻿using IO.DataBase;
 using IO.MainApp;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;

@@ -1,5 +1,4 @@
 ﻿using IO.DataBase;
-using IO.MainApp;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;

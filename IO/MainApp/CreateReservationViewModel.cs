@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using IO.DataBase;
 using System.Windows.Input;
 using System.Windows;
@@ -63,11 +58,11 @@ namespace IO.MainApp
 
         public CreateReservationViewModel()
         {
-            CreateCommand = new RelayCommand(_ => CreateReservation());
+            CreateCommand = new RelayCommand(CreateReservation);
             CancelCommand = new RelayCommand(_ => RequestClose?.Invoke(false));
         }
 
-        private void CreateReservation()
+        private void CreateReservation(object parameter)
         {
             if (string.IsNullOrWhiteSpace(NrSali) || string.IsNullOrWhiteSpace(Rezerwujacy) || string.IsNullOrWhiteSpace(Od))
             {
