@@ -1,115 +1,68 @@
 ﻿<Page x:Class="IO.MainApp.AdminDashboard"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:local="clr-namespace:IO.MainApp"
+xmlns:vm="clr-namespace:IO.MainApp"
       Title="AdminDashboard">
+    <Page.DataContext>
+        <vm:AdminDashboardViewModel />
+    </Page.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock 
-            Text="Panel Administracyjny"
-            FontSize="24"
-            HorizontalAlignment="Center"
-            Margin="10"/>
+        <TextBlock Text="Panel Administracyjny"
+                   FontSize="24"
+                   HorizontalAlignment="Center"
+                   Margin="10"/>
 
         <TabControl Grid.Row="1">
             <TabItem Header="Zarządzanie użytkownikami">
-                <DataGrid 
-                    x:Name="UsersGrid"
-                    SelectionChanged="UsersGrid_SelectionChanged"
-                    SelectionMode="Single"
-                    AutoGenerateColumns="False"
-                    Grid.Row="1">
+                <DataGrid ItemsSource="{Binding Users}"
+                          SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                          AutoGenerateColumns="False"
+                          SelectionMode="Single">
                     <DataGrid.Columns>
-                        <DataGridTextColumn 
-                            Header="Login użytkownika"
-                            Binding="{Binding login}">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn 
-                            Header="Hasło użytkownika"
-                            Binding="{Binding password}">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn 
-                            Header="Typ użytkownika (0 - wykładowca, 1- Admin)"
-                             Binding="{Binding UserType}">
-
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Login" Binding="{Binding login}" />
+                        <DataGridTextColumn Header="Hasło" Binding="{Binding password}" />
+                        <DataGridTextColumn Header="Typ" Binding="{Binding UserType}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
-            <TabItem 
-                Header="Zarządzanie salami"
-                Height="22"
-                Margin="-2,-2,-2,0"
-                VerticalAlignment="Top">
-                <DataGrid 
-                    x:Name="ClassroomsGrid"
-                    
-                    AutoGenerateColumns="False"
-                    Grid.Row="1">
+            <TabItem Header="Zarządzanie salami">
+                <DataGrid ItemsSource="{Binding Classrooms}"
+                          AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn 
-                            Header="Numer Sali"
-                            Binding="{Binding NrSali}">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn 
-                            Header="Rezerwujący"
-                            Binding="{Binding Rezerwujacy}">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn 
-                            Header="Data rozpoczęcia"
-                            Binding="{Binding Od}">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn 
-                            Header="Data zakończenia"
-                            Binding="{Binding Do}">
-
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Numer Sali" Binding="{Binding NrSali}" />
+                        <DataGridTextColumn Header="Rezerwujący" Binding="{Binding Rezerwujacy}" />
+                        <DataGridTextColumn Header="Data rozpoczęcia" Binding="{Binding Od}" />
+                        <DataGridTextColumn Header="Data zakończenia" Binding="{Binding Do}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Statystyki">
                 <StackPanel>
                     <TextBlock Text="Liczba użytkowników:"/>
-                    <TextBlock x:Name="UserCountText"/>
-                    <TextBlock Text="Liczba aktywnych rezerwacji:"/>
-                    <TextBlock x:Name="ReservationCountText"/>
+                    <TextBlock Text="{Binding UserCount}"/>
+                    <TextBlock Text="Liczba rezerwacji:"/>
+                    <TextBlock Text="{Binding ReservationCount}"/>
                 </StackPanel>
-
             </TabItem>
         </TabControl>
-        <StackPanel 
-            Orientation="Horizontal"
-            Grid.Row="2"
-            HorizontalAlignment="Right"
-            Margin="5">
 
-            <Button 
-                x:Name="AddButton" 
-                Click="AddButton_Click"
-                Margin="5">Dodaj użytkownika</Button>
-
-            <Button 
-                x:Name="DeleteButton" 
-                Click="DeleteButton_Click"
-                IsEnabled="False"
-                Margin="5">Usuń użytkownika</Button>
-            <Button 
-                x:Name="UpdateButton" 
-                Click="UpdateButton_Click"
-                IsEnabled="False"
-                Margin="5">Aktualizuj użytkownika</Button>
-            <Button 
-                Click="ExitButton_Click"
-                Margin="5">Zamknij</Button>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button Content="Dodaj użytkownika" Command="{Binding AddUserCommand}" Margin="5"/>
+            <Button Content="Usuń użytkownika" Command="{Binding DeleteUserCommand}" 
+                    Margin="5" IsEnabled="{Binding IsUserSelected}"/>
+            <Button Content="Aktualizuj użytkownika" Command="{Binding UpdateUserCommand}" 
+                    Margin="5" IsEnabled="{Binding IsUserSelected}"/>
+            <Button Content="Zamknij" Command="{Binding ExitCommand}" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>

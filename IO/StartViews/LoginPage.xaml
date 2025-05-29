@@ -4,13 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IO"
+      xmlns:vm ="clr-namespace:IO"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1600"
+      Height="1000" Width="1600"
       Title="LoginPage">
-
+    
     <Grid>
-        <Image Source="\res\img\login.jpg"></Image>
-        <Grid Background="White" Margin="408,283,408,282">
+        <Image Source="\res\img\login.jpg" Stretch="Fill"/>
+        <Grid Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="800">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -18,87 +19,24 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <!-- tekst zaloguj sie -->
-            <TextBlock 
-                x:Name="NZaloguj"
-                Text="Zaloguj sie"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                FontSize="35"
-                Foreground="Purple"
-                Height="50" 
-                Width="180"
-                Margin="0,36,0,0"
-                Grid.Row="4"
-                Grid.ColumnSpan="2"/>
+              
+            <!-- Tytuł -->
+            <TextBlock Text="Zaloguj się" HorizontalAlignment="Center" FontSize="35" Foreground="Purple" Grid.Row="0" Margin="0,20"/>
 
-            <!-- logowanie -->
-            <TextBlock 
-                Grid.Row="4"
-                Text="login"
-                Margin="191,149,-91,267"
-                FontSize="14"
-                Grid.ColumnSpan="2"/>
-            <TextBox
-                x:Name="Login_Box"
-                Text="Username"
-                Grid.Row="4"
-                Width="400"
-                Height="20"
-                Margin="0,173,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Grid.ColumnSpan="2"/>
-            <TextBlock
-                Grid.Row="4"
-                Text="hasło"
-                Margin="191,230,-91,185"
-                FontSize="14"
-                Grid.ColumnSpan="2"/>
-            <PasswordBox 
-                x:Name="Password_Box"
-                Grid.Row="4"
-                Width="400"
-                Height="20"
-                Margin="0,255,0,0"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Center"
-                Grid.ColumnSpan="2"
-                />
+            <!-- Login -->
+            <TextBlock Text="Login" Grid.Row="1" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="20"/>
+            <TextBox Text="{Binding Login}" Grid.Row="1" Width="400" Height="25" Margin="100,10" HorizontalAlignment="Right"/>
 
-            <!-- przycisk zarejestruj sie -->
-            <Button 
-                x:Name="Rejestracja_Btn"
-                Grid.Row="4"
-                BorderThickness="0"
-                Content="Zarejestruj się"
-                Foreground="Blue"
-                Background="Transparent"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="13"
-                FontStyle="Italic"
-                Click="Rejestracja_Btn_MouseDown"
-                Margin="352,308,0,0"
-                Grid.ColumnSpan="2"/>
+            <!-- Hasło  -->
+            <TextBlock Text="Hasło" Grid.Row="2" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="20"/>
+            <PasswordBox x:Name="PasswordBox" Grid.Row="2" Width="400" Height="25" Margin="100,10" HorizontalAlignment="Right" PasswordChanged="PasswordBox_PasswordChanged"/>
 
-            <!-- przycisk zaloguj sie -->
-            <Button
-                x:Name="Log_In_Btn"
-                Grid.Row="4"
-                Margin="122,306,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Content="Zaloguj sie"
-                Background="LightGreen"
-                Width="78"
-                Click="Log_In_Btn_Click"
-                Height="23" Grid.Column="1"
-                />
+            <!-- Rejestracja Przycisk -->
+            <Button Content="Zarejestruj się" Command="{Binding RegisterCommand}" Foreground="Blue" Background="Transparent"
+                    FontSize="13" FontStyle="Italic" BorderThickness="0" Grid.Row="3" Margin="100,10" HorizontalAlignment="Center"/>
+
+            <!-- Login Przycisk -->
+            <Button Content="Zaloguj się" Command="{Binding LoginCommand}" Grid.Row="4" Margin="100,10" HorizontalAlignment="Center" Background="LightGreen" Width="100"/>
         </Grid>
     </Grid>
 </Page>

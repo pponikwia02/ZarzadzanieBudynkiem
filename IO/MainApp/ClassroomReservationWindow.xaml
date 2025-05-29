@@ -4,137 +4,56 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IO.MainApp"
+      xmlns:vm="clr-namespace:IO.MainApp"
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="800"
         Height="500"
       Title="ClassroomReservationWindow">
+  
 
-    <Grid Height="450" VerticalAlignment="Top">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <!--  Search bar -->
-            <RowDefinition Height="350"/>
-            <!-- Lista Sal -->
-            <RowDefinition Height="50"/>
-            <!-- Przyciski -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Search -->
-        <StackPanel
-            Orientation="Horizontal"
-            Grid.Row="0"
-            Margin="5">
-            <TextBlock 
-                Text="Search:"
-                VerticalAlignment="Center"/>
-
-            <TextBox
-                x:Name="SearchTextBox"
-                Width="200"
-                Margin="5,0,0,0" 
-                TextChanged="SearchTextBox_TextChanged"/>
+        <!-- Search Bar & Title -->
+        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="0">
+            <TextBlock Text="Search:" VerticalAlignment="Center"/>
+            <TextBox Width="200" Margin="5,0,0,0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
-        <TextBlock 
-            x:Name="BuildingNameTextBlock" 
-            Text="Building Name" 
-            FontSize="16"
-            FontWeight="Bold"
-            HorizontalAlignment="Center"
-            Margin="10"/>
+        <TextBlock Text="{Binding BuildingDisplayName}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="10" Grid.Row="0" VerticalAlignment="Bottom"/>
 
-        <!-- Lista -->
-        <ListView 
-            x:Name="ClassroomsListView"
-            Grid.Row="1"
-            Margin="5" 
-            SelectionChanged="ClassroomsListView_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn
-                        Header="Nazwa sali"
-                        DisplayMemberBinding="{Binding Name}"
-                        Width="150"/>
-                    <GridViewColumn 
-                        Header="Siedzenia"
-                        DisplayMemberBinding="{Binding Seats}"
-                        Width="70"/>
-                    <GridViewColumn 
-                        Header="Rezerwacja"
-                        DisplayMemberBinding="{Binding IsReserved}"
-                        Width="70"/>
-                    <GridViewColumn 
-                        Header="Rezerwujący"
-                        DisplayMemberBinding="{Binding ReservedBy}"
-                        Width="100"/>
-                    <GridViewColumn 
-                        Header="Od"
-                        DisplayMemberBinding="{Binding ReservationStart}"
-                        Width="100"/>
-                    <GridViewColumn 
-                        Header="Do"
-                        DisplayMemberBinding="{Binding ReservationEnd}"
-                        Width="100"/>
-                </GridView>
-            </ListView.View>
+        <!-- Lists -->
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        </ListView>
-        <DataGrid 
-            x:Name="myDataGrid"
-            AutoGenerateColumns="False"
-            SelectionChanged="MyDataGrid_SelectionChanged"
-            SelectionMode="Single"
-            Margin="5,5,5,72"
-            Grid.Row="1"
-            RenderTransformOrigin="0.475,0.495">
-            <DataGrid.Columns>
-               
-                <DataGridTextColumn 
-                    Header="Numer Sali"
-                    Binding="{Binding NrSali}">
-                    
-                </DataGridTextColumn>
-                <DataGridTextColumn
-                    Header="Rezerwujący"
-                    Binding="{Binding Rezerwujacy}">
-                    
-                </DataGridTextColumn>
-                <DataGridTextColumn
-                    Header="Data rozpoczęcia"
-                    Binding="{Binding Od}">
+           
 
-                </DataGridTextColumn>
-                <DataGridTextColumn
-                    Header="Data zakończenia"
-                    Binding="{Binding Do}">
+            <!-- Sala DataGrid -->
+            <DataGrid ItemsSource="{Binding Sale}"
+                 SelectedItem="{Binding SelectedReservation, Mode=TwoWay}"
+                      AutoGenerateColumns="False"
+                      Grid.Column="0" Grid.ColumnSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Numer Sali" Binding="{Binding NrSali}"/>
+                    <DataGridTextColumn Header="Rezerwujący" Binding="{Binding Rezerwujacy}"/>
+                    <DataGridTextColumn Header="Data rozpoczęcia" Binding="{Binding Od}"/>
+                    <DataGridTextColumn Header="Data zakończenia" Binding="{Binding Do}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
 
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <!-- Przyciski -->
-        <StackPanel 
-            Orientation="Horizontal"
-            Grid.Row="2"
-            HorizontalAlignment="Right"
-            Margin="5">
-
-            <Button 
-                Content="Rezerwuj"
-                x:Name="ReserveButton" 
-                Click="ReserveButton_Click"
-                Margin="5"/>
-
-            <Button 
-                Content="Usuń Rezerwacje"
-                x:Name="ChangeButton" 
-                Click="ChangeButton_Click"
-                IsEnabled="False"
-                Margin="5"/>
-
-            <Button 
-                Content="Zamknij"
-                Click="CloseButton_Click"
-                Margin="5"/>
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" Grid.Row="2">
+            <Button Content="Rezerwuj" Command="{Binding ReserveCommand}" Margin="5"/>
+            <Button Content="Usuń Rezerwację" Command="{Binding ChangeCommand}" Margin="5"/>
+            <Button Content="Zamknij" Command="{Binding CloseCommand}" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>

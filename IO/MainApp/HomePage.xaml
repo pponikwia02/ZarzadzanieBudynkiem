@@ -5,156 +5,73 @@
       Width="1100" Height="1083">
 
     <Grid>
-        <!-- Tło - mapa kampusu -->
-        <Image Source="/res/img/kampus.jpg" Stretch="UniformToFill" Name="CampusMap"/>
 
-        <!-- Interaktywne obszary budynków -->
+        <!-- Mapa -->
+        <Image Source="/res/img/kampus.jpg" Stretch="UniformToFill"/>
+
         <Canvas>
-            <!-- Budynek L  -->
-            <Rectangle 
-                x:Name="BuildingL"
-                Width="517"
-                Height="85" 
-                Canvas.Left="107"
-                Canvas.Top="264"
-                Fill="Transparent"
-                Stroke="Transparent"
-                Cursor="Hand"
-                MouseEnter="Building_MouseEnter"
-                MouseLeave="Building_MouseLeave"
-                MouseLeftButtonDown="Building_Click"
-                Tag="Budynek L"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"/>
+            <!-- Budynki -->
+            <ItemsControl ItemsSource="{Binding Buildings}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-            <!-- Budynek A -->
-            <Rectangle
-                x:Name="BuildingA"
-                Width="290"
-                Height="58"
-                Canvas.Left="107"
-                Canvas.Top="427"
-                Fill="Transparent"
-                Stroke="Transparent"
-                Cursor="Hand"
-                MouseEnter="Building_MouseEnter"
-                MouseLeave="Building_MouseLeave"
-                MouseLeftButtonDown="Building_Click"
-                Tag="Budynek A"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="0"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding CanvasLeft}" />
+                        <Setter Property="Canvas.Top" Value="{Binding CanvasTop}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
 
-            <!-- Budynek B  -->
-            <Rectangle 
-                x:Name="BuildingB" 
-                Width="275" Height="55"
-                Canvas.Left="107" Canvas.Top="598"
-                Fill="Transparent" Stroke="Transparent"
-                Cursor="Hand"
-                MouseEnter="Building_MouseEnter"
-                MouseLeave="Building_MouseLeave"
-                MouseLeftButtonDown="Building_Click"
-                Tag="Budynek B"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"/>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Rectangle
+                            Width="{Binding Width}"
+                            Height="{Binding Height}"
+                            StrokeThickness="0"
+                            Stroke="{Binding Color}"
+                            Cursor="Hand"
+                            Canvas.Left="{Binding CanvasLeft}"
+                            Canvas.Top="{Binding CanvasTop}">
 
-            <!-- Budynek H -->
-            <Rectangle 
-                x:Name="BuildingH" 
-                Width="138" Height="60"
-                Canvas.Left="195" Canvas.Top="899"
-                Fill="Transparent" Stroke="Transparent"
-                Cursor="Hand"
-                MouseEnter="Building_MouseEnter"
-                MouseLeave="Building_MouseLeave"
-                MouseLeftButtonDown="Building_Click"
-                Tag="Budynek H"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"/>
+                            <!-- Styl do podświetlania po najechaniu -->
+                            <Rectangle.Style>
+                                <Style TargetType="Rectangle">
+                                    <Setter Property="Fill" Value="Transparent"/>
+                                    <Setter Property="Opacity" Value="1"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Fill" Value="{Binding Color}" />
+                                            <Setter Property="Opacity" Value="0.4"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Rectangle.Style>
 
-            <!-- Budynek G  -->
-            <Rectangle 
-                x:Name="BuildingG" 
-                Width="230" Height="130"
-                Canvas.Left="397" Canvas.Top="838"
-                Fill="Transparent" Stroke="Transparent"
-                Cursor="Hand"
-                MouseEnter="Building_MouseEnter"
-                MouseLeave="Building_MouseLeave"
-                MouseLeftButtonDown="Building_Click"
-                Tag="Budynek G"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"/>
+                            <!-- Tooltip -->
+                            <Rectangle.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14" Foreground="{Binding Color}" />
+                                    <TextBlock Text="{Binding ReservationCount, StringFormat=Liczba rezerwacji: {0}}" />
+                                    <TextBlock Text="Kliknij, aby zarezerwować" TextDecorations="Underline" />
+                                </StackPanel>
+                            </Rectangle.ToolTip>
 
-            <!-- Budynek F  -->
-            <Rectangle 
-                x:Name="BuildingF" 
-                Width="78" Height="83"
-                Canvas.Left="759" Canvas.Top="744"
-                Fill="Transparent" Stroke="Transparent"
-                Cursor="Hand"
-                MouseEnter="Building_MouseEnter"
-                MouseLeave="Building_MouseLeave"
-                MouseLeftButtonDown="Building_Click"
-                Tag="Budynek F"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-3.092"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
+                            
+                            <Rectangle.InputBindings>
+                                <MouseBinding Gesture="LeftClick" Command="{Binding ClickCommand}" />
+                            </Rectangle.InputBindings>
 
-            <!-- Budynek E  -->
-            <Rectangle 
-                x:Name="BuildingE" 
-                Width="42" Height="52"
-                Canvas.Left="802" Canvas.Top="898"
-                Fill="Transparent" Stroke="Transparent"
-                Cursor="Hand"
-                MouseEnter="Building_MouseEnter"
-                MouseLeave="Building_MouseLeave"
-                MouseLeftButtonDown="Building_Click"
-                Tag="Budynek E" 
-                RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-2.304"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-
-            <!-- Budynek C  -->
-            <Rectangle 
-                x:Name="BuildingC" 
-                Width="74" Height="197"
-                Canvas.Left="904" Canvas.Top="689"
-                Fill="Transparent" Stroke="Transparent"
-                Cursor="Hand"
-                MouseEnter="Building_MouseEnter"
-                MouseLeave="Building_MouseLeave"
-                MouseLeftButtonDown="Building_Click"
-                Tag="Budynek C"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"/>
+                            <!-- Rotacja budynku -->
+                            <Rectangle.RenderTransform>
+                                <RotateTransform Angle="{Binding Rotation}" />
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Canvas>
     </Grid>
 </Page>

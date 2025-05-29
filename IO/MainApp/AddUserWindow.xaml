@@ -4,102 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IO.MainApp"
+        xmlns:vm="clr-namespace:IO.MainApp"
         mc:Ignorable="d"
         Title="AddUserWindow" Height="250" Width="400">
-	<Grid Margin="10">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-		<StackPanel
-            Grid.Row="3"
-            Grid.Column="1">
-			<ComboBox
-                x:Name="UserTypeComboBox"
-                Width="113"
-                SelectedIndex="0"
-                Height="30">
+    <Window.DataContext>
+        <vm:AddUserViewModel />
+    </Window.DataContext>
 
-			</ComboBox>
-		</StackPanel>
-		<!-- Nr.Sali -->
-		<TextBlock
-                Text=" Login :"
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="5"
-                VerticalAlignment="Center"/>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-		<TextBox
-                x:Name="Login_Box"
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="5"/>
+        <TextBlock Text="Login :" Grid.Row="0" Grid.Column="0" Margin="5"/>
+        <TextBox Text="{Binding Login}" Grid.Row="0" Grid.Column="1" Margin="5"/>
 
-		<!-- Rezerwujący -->
-		<TextBlock
-                Text="Hasło :"
-                Grid.Row="1"
-                Grid.Column="0" Margin="5"
-                VerticalAlignment="Center"/>
+        <TextBlock Text="Hasło :" Grid.Row="1" Grid.Column="0" Margin="5"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" Margin="5" PasswordChanged="PasswordBox_PasswordChanged"/>
 
-		<PasswordBox
-                x:Name="Password_Box"
-                Height="20"
-                Grid.Row="1"
-				Grid.Column="1" Margin="5,3,5,3"/>
-		<TextBlock
-                Text="Powtórz Hasło :"
-                Grid.Row="2"
-                Grid.Column="0" Margin="5"
-                VerticalAlignment="Center"/>
+        <TextBlock Text="Powtórz Hasło :" Grid.Row="2" Grid.Column="0" Margin="5"/>
+        <PasswordBox x:Name="RepeatPasswordBox" Grid.Row="2" Grid.Column="1" Margin="5" PasswordChanged="RepeatPasswordBox_PasswordChanged"/>
 
-		<PasswordBox
-                x:Name="Password_Box_Repeat"
-                Height="20"
-                Grid.Row="2"
-				Grid.Column="1" Margin="5,3,5,3"/>
+        <TextBlock Text="Typ użytkownika :" Grid.Row="3" Grid.Column="0" Margin="5"/>
+        <ComboBox ItemsSource="{Binding UserTypes}" SelectedItem="{Binding SelectedUserType}" DisplayMemberPath="DisplayName" SelectedValuePath="Value"
+                  Width="113" Height="30" Grid.Row="3" Grid.Column="1"/>
 
-		<!-- start -->
-		<TextBlock
-                Text="Typ użytkownika :"
-                Grid.Row="3"
-                Grid.Column="0"
-                Margin="5"
-                VerticalAlignment="Center"/>
-
-
-
-		<!-- Przyciski -->
-		<StackPanel
-                Orientation="Horizontal"
-                Grid.Row="5"
-                Grid.ColumnSpan="2"
-                HorizontalAlignment="Right"
-                Margin="5">
-
-			<Button
-                    Content="Dodaj"
-                    Width="auto"
-                    Height="auto"
-                    Margin="5"
-                    Click="AddButton_Click"/>
-
-			<Button
-                    Content="Zamknij"
-                    Width="auto"
-                    Height="auto"
-                    Margin="5"
-                    Click="CancelButton_Click"/>
-		</StackPanel>
-
-	</Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="5">
+            <Button Content="Dodaj" Margin="5" Command="{Binding AddCommand}"/>
+            <Button Content="Zamknij" Margin="5" Command="{Binding CancelCommand}"/>
+        </StackPanel>
+    </Grid>
 </Window>
