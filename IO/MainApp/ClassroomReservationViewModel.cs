@@ -87,7 +87,11 @@ namespace IO.MainApp
 
         private void OpenReservationWindow()
         {
-            var window = new CreateReservationWindow();
+            if (App.Current == null) 
+            {
+                MessageBox.Show("Nie jesteś zalogowany");
+            }
+            var window = new CreateReservationWindow(App.CurrentUser.login);
             window.ShowDialog();
 
             if (window.IsReservationSuccessful)

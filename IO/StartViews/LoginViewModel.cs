@@ -46,6 +46,7 @@ namespace IO
 
             if (user != null && PasswordHasher.VerifyPassword(Password, user.password))
             {
+                App.CurrentUser = user;
                 MessageBox.Show("Logowanie zakończone sukcesem");
 
                 if (user.UserType == 1)

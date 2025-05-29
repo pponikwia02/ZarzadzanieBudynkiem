@@ -56,8 +56,9 @@ namespace IO.MainApp
 
         public event Action<bool> RequestClose;
 
-        public CreateReservationViewModel()
+        public CreateReservationViewModel(string currentUserLogin)
         {
+            Rezerwujacy=currentUserLogin;
             CreateCommand = new RelayCommand(CreateReservation);
             CancelCommand = new RelayCommand(_ => RequestClose?.Invoke(false));
         }

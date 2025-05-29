@@ -9,11 +9,11 @@ namespace IO.MainApp
     {
         public bool IsReservationSuccessful { get; private set; }
 
-        public CreateReservationWindow()
+        public CreateReservationWindow(string currentUserLogin)
         {
             InitializeComponent();
 
-            var vm = new CreateReservationViewModel();
+            var vm = new CreateReservationViewModel(currentUserLogin);
             vm.RequestClose += OnRequestClose;
             DataContext = vm;
         }

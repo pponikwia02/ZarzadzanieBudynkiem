@@ -29,7 +29,7 @@
         <!-- Rezerwujący -->
         <TextBlock Text="Rezerwujący:" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5"
-                 Text="{Binding Rezerwujacy, UpdateSourceTrigger=PropertyChanged}" />
+                 Text="{Binding Rezerwujacy, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" />
 
         <!-- Start -->
         <TextBlock Text="Start (data):" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
